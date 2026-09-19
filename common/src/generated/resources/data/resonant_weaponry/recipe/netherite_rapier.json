@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "resonant_weaponry:diamond_rapier",
+  "result": {
+    "id": "resonant_weaponry:netherite_rapier"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

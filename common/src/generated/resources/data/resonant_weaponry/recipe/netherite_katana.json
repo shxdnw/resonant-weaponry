@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "minecraft:netherite_ingot",
+  "base": "resonant_weaponry:diamond_katana",
+  "result": {
+    "id": "resonant_weaponry:netherite_katana"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

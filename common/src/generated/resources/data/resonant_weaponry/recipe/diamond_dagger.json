@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "minecraft:diamond",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "SI"
+  ],
+  "result": {
+    "id": "resonant_weaponry:diamond_dagger"
+  }
+}

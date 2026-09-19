@@ -16,6 +16,8 @@ fabricApi {
         outputDirectory.set(file("../common/src/generated/resources"))
         createSourceSet.set(false)
         addToResources.set(false)
+        // Server-mode datagen never exits; the client shuts down cleanly (architectury-loom#189).
+        client.set(true)
     }
 }
 

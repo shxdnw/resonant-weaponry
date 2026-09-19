@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:stick"
+  },
+  "pattern": [
+    "  I",
+    "II ",
+    "SI "
+  ],
+  "result": {
+    "id": "resonant_weaponry:iron_greatsword"
+  }
+}

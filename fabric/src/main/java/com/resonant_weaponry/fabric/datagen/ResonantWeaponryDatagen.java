@@ -9,5 +9,6 @@ public final class ResonantWeaponryDatagen implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = generator.createPack();
         pack.addProvider(WeaponItemTagProvider::new);
         pack.addProvider(WeaponLanguageProvider::new);
+        pack.addProvider(WeaponRecipeProvider::new);
     }
 }
