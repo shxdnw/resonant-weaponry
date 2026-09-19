@@ -7,6 +7,9 @@ build/
 run/
 */run/
 
+# Datagen cache
+common/src/generated/resources/.cache/
+
 # IDE
 .idea/
 *.iml
