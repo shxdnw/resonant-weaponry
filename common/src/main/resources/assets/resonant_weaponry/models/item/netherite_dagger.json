@@ -1,0 +1,6 @@
+{
+  "parent": "resonant_weaponry:item/_dagger",
+  "textures": {
+    "layer0": "resonant_weaponry:item/netherite_dagger"
+  }
+}

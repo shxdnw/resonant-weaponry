@@ -1,0 +1,6 @@
+{
+  "parent": "resonant_weaponry:item/_greatsword",
+  "textures": {
+    "layer0": "resonant_weaponry:item/netherite_greatsword"
+  }
+}

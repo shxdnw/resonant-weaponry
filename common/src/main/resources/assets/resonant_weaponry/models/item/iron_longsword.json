@@ -1,0 +1,6 @@
+{
+  "parent": "resonant_weaponry:item/_longsword",
+  "textures": {
+    "layer0": "resonant_weaponry:item/iron_longsword"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "resonant_weaponry:item/_scythe",
+  "textures": {
+    "layer0": "resonant_weaponry:item/iron_scythe"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "resonant_weaponry:item/_sickle",
+  "textures": {
+    "layer0": "resonant_weaponry:item/diamond_sickle"
+  }
+}

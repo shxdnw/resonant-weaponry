@@ -1,0 +1,33 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "LGPL-3.0"
+
+[[mods]]
+modId = "resonant_weaponry"
+version = "${version}"
+displayName = "Resonant Weaponry"
+authors = "shxdnw"
+description = '''
+.
+'''
+
+[[dependencies.resonant_weaponry]]
+modId = "neoforge"
+type = "required"
+versionRange = "[1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.resonant_weaponry]]
+modId = "minecraft"
+type = "required"
+versionRange = "[26.1.2, 26.2)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.resonant_weaponry]]
+modId = "architectury"
+type = "required"
+versionRange = "[20.0.12,)"
+ordering = "AFTER"
+side = "BOTH"
