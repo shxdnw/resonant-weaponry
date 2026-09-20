@@ -22,6 +22,7 @@ configurations {
 dependencies {
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
     api "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
+    api "me.fzzyhmstrs:fzzy_config:${rootProject.fzzy_config_version}+neoforge"
 
     common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }

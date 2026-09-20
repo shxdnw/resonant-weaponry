@@ -1,6 +1,7 @@
 package com.resonant_weaponry.registry;
 
 import com.resonant_weaponry.ResonantWeaponry;
+import com.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.resonant_weaponry.content.MaterialTier;
 import com.resonant_weaponry.content.WeaponDefinition;
 import com.resonant_weaponry.content.WeaponRegistry;
@@ -55,19 +56,23 @@ public final class ModItems {
     private static Item createWeapon(WeaponDefinition definition) {
         MaterialTier tier = definition.tier();
         WeaponType type = definition.type();
+        ResonantWeaponryConfig.MaterialTiers.TierSection tierStats =
+                ResonantWeaponryConfig.materialTiers.forTier(tier);
+        ResonantWeaponryConfig.WeaponTypes.TypeSection typeStats =
+                ResonantWeaponryConfig.weaponTypes.forType(type);
 
         ToolMaterial material = new ToolMaterial(
                 tier.incorrectBlocksForDrops(),
-                tier.durabilityFor(type),
+                (int) Math.floor(tierStats.durability * typeStats.duramulti),
                 1.0F,
-                tier.attackDamageBonus(),
-                tier.enchantability(),
+                tierStats.attackDamageBonus,
+                tierStats.enchantability,
                 tier.repairItems());
 
         Identifier id = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, definition.id());
         Item.Properties properties = new Item.Properties()
                 .setId(ResourceKey.create(Registries.ITEM, id))
-                .sword(material, type.baseDamage(), type.attackSpeed());
+                .sword(material, typeStats.basedmg, typeStats.atkspeed);
 
         if (tier.fireResistant()) {
             properties.fireResistant();

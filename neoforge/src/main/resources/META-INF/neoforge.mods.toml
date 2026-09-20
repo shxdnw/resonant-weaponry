@@ -31,3 +31,10 @@ type = "required"
 versionRange = "[20.0.12,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.resonant_weaponry]]
+modId = "fzzy_config"
+type = "required"
+versionRange = "[0.7.6,)"
+ordering = "AFTER"
+side = "BOTH"
