@@ -1,8 +1,8 @@
-package com.resonant_weaponry.config;
+package com.shxdnw.resonant_weaponry.config;
 
-import com.resonant_weaponry.ResonantWeaponry;
-import com.resonant_weaponry.content.MaterialTier;
-import com.resonant_weaponry.content.WeaponType;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.content.MaterialTier;
+import com.shxdnw.resonant_weaponry.content.WeaponType;
 import me.fzzyhmstrs.fzzy_config.annotations.Action;
 import me.fzzyhmstrs.fzzy_config.annotations.RequiresAction;
 import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;

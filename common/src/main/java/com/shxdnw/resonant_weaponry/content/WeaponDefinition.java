@@ -1,6 +1,6 @@
-package com.resonant_weaponry.content;
+package com.shxdnw.resonant_weaponry.content;
 
-import com.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 
 public record WeaponDefinition(String id, MaterialTier tier, WeaponType type) {
     public static String idOf(MaterialTier tier, WeaponType type) {

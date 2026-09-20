@@ -1,9 +1,9 @@
-package com.resonant_weaponry.fabric.datagen;
+package com.shxdnw.resonant_weaponry.fabric.datagen;
 
-import com.resonant_weaponry.ResonantWeaponry;
-import com.resonant_weaponry.content.WeaponDefinition;
-import com.resonant_weaponry.content.WeaponRegistry;
-import com.resonant_weaponry.registry.ModTags;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
+import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
+import com.shxdnw.resonant_weaponry.registry.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;

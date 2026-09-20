@@ -1,6 +1,6 @@
-package com.resonant_weaponry.registry;
+package com.shxdnw.resonant_weaponry.registry;
 
-import com.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;

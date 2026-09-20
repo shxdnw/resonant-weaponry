@@ -1,7 +1,7 @@
-package com.resonant_weaponry;
+package com.shxdnw.resonant_weaponry;
 
-import com.resonant_weaponry.config.ResonantWeaponryConfig;
-import com.resonant_weaponry.registry.ModItems;
+import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.registry.ModItems;
 
 public final class ResonantWeaponry {
     public static final String MOD_ID = "resonant_weaponry";

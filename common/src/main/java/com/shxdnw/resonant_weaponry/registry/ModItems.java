@@ -1,11 +1,11 @@
-package com.resonant_weaponry.registry;
+package com.shxdnw.resonant_weaponry.registry;
 
-import com.resonant_weaponry.ResonantWeaponry;
-import com.resonant_weaponry.config.ResonantWeaponryConfig;
-import com.resonant_weaponry.content.MaterialTier;
-import com.resonant_weaponry.content.WeaponDefinition;
-import com.resonant_weaponry.content.WeaponRegistry;
-import com.resonant_weaponry.content.WeaponType;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.MaterialTier;
+import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
+import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
+import com.shxdnw.resonant_weaponry.content.WeaponType;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;

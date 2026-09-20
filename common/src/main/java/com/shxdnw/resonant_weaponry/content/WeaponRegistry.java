@@ -1,4 +1,4 @@
-package com.resonant_weaponry.content;
+package com.shxdnw.resonant_weaponry.content;
 
 import java.util.ArrayList;
 import java.util.List;

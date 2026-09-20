@@ -11,10 +11,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.resonant_weaponry.fabric.ResonantWeaponryFabric"
+      "com.shxdnw.resonant_weaponry.fabric.ResonantWeaponryFabric"
     ],
     "fabric-datagen": [
-      "com.resonant_weaponry.fabric.datagen.ResonantWeaponryDatagen"
+      "com.shxdnw.resonant_weaponry.fabric.datagen.ResonantWeaponryDatagen"
     ]
   },
   "depends": {

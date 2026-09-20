@@ -1,4 +1,4 @@
-package com.resonant_weaponry.fabric.datagen;
+package com.shxdnw.resonant_weaponry.fabric.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

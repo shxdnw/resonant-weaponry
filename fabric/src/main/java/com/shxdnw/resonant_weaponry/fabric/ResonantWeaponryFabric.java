@@ -1,6 +1,6 @@
-package com.resonant_weaponry.fabric;
+package com.shxdnw.resonant_weaponry.fabric;
 
-import com.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import net.fabricmc.api.ModInitializer;
 
 public final class ResonantWeaponryFabric implements ModInitializer {

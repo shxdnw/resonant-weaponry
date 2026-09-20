@@ -1,12 +1,12 @@
-package com.resonant_weaponry.fabric.datagen;
+package com.shxdnw.resonant_weaponry.fabric.datagen;
 
-import com.resonant_weaponry.ResonantWeaponry;
-import com.resonant_weaponry.config.ResonantWeaponryConfig;
-import com.resonant_weaponry.content.MaterialTier;
-import com.resonant_weaponry.content.WeaponDefinition;
-import com.resonant_weaponry.content.WeaponRegistry;
-import com.resonant_weaponry.content.WeaponType;
-import com.resonant_weaponry.registry.ModTags;
+import com.shxdnw.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.MaterialTier;
+import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
+import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
+import com.shxdnw.resonant_weaponry.content.WeaponType;
+import com.shxdnw.resonant_weaponry.registry.ModTags;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;

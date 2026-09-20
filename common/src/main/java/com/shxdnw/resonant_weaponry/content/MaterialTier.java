@@ -1,4 +1,4 @@
-package com.resonant_weaponry.content;
+package com.shxdnw.resonant_weaponry.content;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
