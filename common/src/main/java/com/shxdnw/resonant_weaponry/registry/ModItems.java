@@ -2,6 +2,8 @@ package com.shxdnw.resonant_weaponry.registry;
 
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapons;
 import com.shxdnw.resonant_weaponry.content.MaterialTier;
 import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
 import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
@@ -28,10 +30,14 @@ public final class ModItems {
             DeferredRegister.create(ResonantWeaponry.MOD_ID, Registries.CREATIVE_MODE_TAB);
 
     private static final Map<String, RegistrySupplier<Item>> WEAPONS = new LinkedHashMap<>();
+    private static final Map<String, RegistrySupplier<Item>> LEGENDARIES = new LinkedHashMap<>();
 
     static {
         for (WeaponDefinition definition : WeaponRegistry.STANDARD_WEAPONS) {
             WEAPONS.put(definition.id(), ITEMS.register(definition.id(), () -> createWeapon(definition)));
+        }
+        for (LegendaryWeapon definition : LegendaryWeapons.ALL) {
+            LEGENDARIES.put(definition.id(), ITEMS.register(definition.id(), () -> createLegendary(definition)));
         }
     }
 
@@ -41,6 +47,9 @@ public final class ModItems {
                     .icon(() -> new ItemStack(WEAPONS.get(WeaponDefinition.idOf(MaterialTier.IRON, WeaponType.LONGSWORD)).get()))
                     .displayItems((parameters, output) -> {
                         for (RegistrySupplier<Item> weapon : WEAPONS.values()) {
+                            output.accept(weapon.get());
+                        }
+                        for (RegistrySupplier<Item> weapon : LEGENDARIES.values()) {
                             output.accept(weapon.get());
                         }
                     })));
@@ -79,5 +88,21 @@ public final class ModItems {
         }
 
         return new Item(properties);
+    }
+
+    private static Item createLegendary(LegendaryWeapon definition) {
+        ToolMaterial material = new ToolMaterial(
+                MaterialTier.NETHERITE.incorrectBlocksForDrops(),
+                ResonantWeaponryConfig.legendaryWeapons.durability,
+                1.0F,
+                0.0F,
+                MaterialTier.NETHERITE.enchantability(),
+                MaterialTier.NETHERITE.repairItems());
+
+        Identifier id = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, definition.id());
+        return new Item(new Item.Properties()
+                .setId(ResourceKey.create(Registries.ITEM, id))
+                .sword(material, definition.attackDamage(), definition.attackSpeed())
+                .fireResistant());
     }
 }

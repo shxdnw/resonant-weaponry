@@ -1,6 +1,8 @@
 package com.shxdnw.resonant_weaponry.fabric.datagen;
 
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapons;
 import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
 import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
 import com.shxdnw.resonant_weaponry.registry.ModTags;
@@ -24,7 +26,10 @@ public final class WeaponItemTagProvider extends FabricTagsProvider.ItemTagsProv
     protected void addTags(HolderLookup.Provider registries) {
         var weapons = builder(ModTags.WEAPONS);
         for (WeaponDefinition definition : WeaponRegistry.STANDARD_WEAPONS) {
-            weapons.add(itemKey(definition));
+            weapons.add(itemKey(definition.id()));
+        }
+        for (LegendaryWeapon definition : LegendaryWeapons.ALL) {
+            weapons.add(itemKey(definition.id()));
         }
 
         builder(ItemTags.MELEE_WEAPON_ENCHANTABLE).addTag(ModTags.WEAPONS);
@@ -32,8 +37,7 @@ public final class WeaponItemTagProvider extends FabricTagsProvider.ItemTagsProv
         builder(ItemTags.SWEEPING_ENCHANTABLE).addTag(ModTags.WEAPONS);
     }
 
-    private static ResourceKey<Item> itemKey(WeaponDefinition definition) {
-        return ResourceKey.create(Registries.ITEM,
-                Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, definition.id()));
+    private static ResourceKey<Item> itemKey(String id) {
+        return ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, id));
     }
 }

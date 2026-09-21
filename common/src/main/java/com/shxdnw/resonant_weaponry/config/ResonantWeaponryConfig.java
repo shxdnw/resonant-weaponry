@@ -21,6 +21,8 @@ public final class ResonantWeaponryConfig {
             ConfigApiJava.registerAndLoadConfig(MaterialTiers::new, RegisterType.BOTH);
     public static final WeaponTypes weaponTypes =
             ConfigApiJava.registerAndLoadConfig(WeaponTypes::new, RegisterType.BOTH);
+    public static final LegendaryWeapons legendaryWeapons =
+            ConfigApiJava.registerAndLoadConfig(LegendaryWeapons::new, RegisterType.BOTH);
 
     private ResonantWeaponryConfig() {
     }
@@ -187,6 +189,15 @@ public final class ResonantWeaponryConfig {
                 super(7.5f, -3.1f, 1.35f);
             }
         }
+    }
+
+    @RequiresAction(action = Action.RESTART)
+    public static final class LegendaryWeapons extends Config {
+        public LegendaryWeapons() {
+            super(id("legendary_weapons"));
+        }
+
+        public int durability = 3249;
     }
 
     private static Identifier id(String path) {

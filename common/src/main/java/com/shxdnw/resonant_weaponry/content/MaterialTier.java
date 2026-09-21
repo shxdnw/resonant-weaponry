@@ -33,6 +33,10 @@ public enum MaterialTier {
         return material.repairItems();
     }
 
+    public int enchantability() {
+        return material.enchantmentValue();
+    }
+
     public boolean fireResistant() {
         return fireResistant;
     }

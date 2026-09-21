@@ -2,6 +2,8 @@ package com.shxdnw.resonant_weaponry.fabric.datagen;
 
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeapons;
 import com.shxdnw.resonant_weaponry.content.MaterialTier;
 import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
 import com.shxdnw.resonant_weaponry.content.WeaponRegistry;
@@ -50,7 +52,8 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("basedmg", "Base Damage"),
             entry("atkspeed", "Attack Speed"),
             entry("duramulti", "Durability Multiplier"),
-            entry("armorPenetration", "Armour Penetration"));
+            entry("armorPenetration", "Armour Penetration"),
+            entry("legendary_weapons", "Legendary Weapons"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -63,7 +66,8 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("basedmg", "Base damage before the material bonus."),
             entry("atkspeed", "Modifier added to the baseline of 4.0 attacks per second."),
             entry("duramulti", "Multiplier applied to the material's durability."),
-            entry("armorPenetration", "Fraction of the target's armour ignored (0-1)."));
+            entry("armorPenetration", "Fraction of the target's armour ignored (0-1)."),
+            entry("legendary_weapons.durability", "Max durability shared by every legendary weapon."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
@@ -77,33 +81,39 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
         for (WeaponDefinition definition : WeaponRegistry.STANDARD_WEAPONS) {
             builder.add(definition.nameKey(), tierName(definition.tier()) + " " + typeName(definition.type()));
         }
+        for (LegendaryWeapon definition : LegendaryWeapons.ALL) {
+            builder.add(definition.nameKey(), definition.displayName());
+        }
 
         config(builder, ResonantWeaponryConfig.General.class, "general");
         config(builder, ResonantWeaponryConfig.MaterialTiers.class, "material_tiers");
         config(builder, ResonantWeaponryConfig.WeaponTypes.class, "weapon_types");
+        config(builder, ResonantWeaponryConfig.LegendaryWeapons.class, "legendary_weapons");
     }
 
     private static void config(TranslationBuilder builder, Class<?> configClass, String configId) {
-        addTranslation(builder, key(configId), configId);
+        addTranslation(builder, key(configId), configId, configId);
         for (Field field : fields(configClass)) {
-            String fieldKey = key(configId + "." + field.getName());
-            addTranslation(builder, fieldKey, field.getName());
+            String fieldPath = configId + "." + field.getName();
+            String fieldKey = key(fieldPath);
+            addTranslation(builder, fieldKey, fieldPath, field.getName());
             if (ConfigSection.class.isAssignableFrom(field.getType())) {
                 for (Field sectionField : fields(field.getType())) {
-                    addTranslation(builder, fieldKey + "." + sectionField.getName(), sectionField.getName());
+                    addTranslation(builder, fieldKey + "." + sectionField.getName(),
+                            fieldPath + "." + sectionField.getName(), sectionField.getName());
                 }
             }
         }
     }
 
-    private static void addTranslation(TranslationBuilder builder, String key, String name) {
-        String label = LABELS.get(name);
+    private static void addTranslation(TranslationBuilder builder, String key, String path, String name) {
+        String label = LABELS.getOrDefault(path, LABELS.get(name));
         if (label == null) {
-            throw new IllegalStateException("Missing config label for '" + name + "'");
+            throw new IllegalStateException("Missing config label for '" + path + "'");
         }
         builder.add(key, label);
 
-        String description = DESCRIPTIONS.get(name);
+        String description = DESCRIPTIONS.getOrDefault(path, DESCRIPTIONS.get(name));
         if (description != null) {
             builder.add(key + ".desc", description);
         }
