@@ -53,7 +53,20 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("atkspeed", "Attack Speed"),
             entry("duramulti", "Durability Multiplier"),
             entry("armorPenetration", "Armour Penetration"),
-            entry("legendary_weapons", "Legendary Weapons"));
+            entry("legendary_weapons", "Legendary Weapons"),
+            entry("theRealKnife", "The Real Knife"),
+            entry("armorPen", "Armour Penetration"),
+            entry("firstHitWindow", "First Hit Window"),
+            entry("relentlessBelow", "Relentless Health Threshold"),
+            entry("explosionRadius", "Explosion Radius"),
+            entry("explosionDamage", "Explosion Damage"),
+            entry("teleportDistance", "Teleport Distance"),
+            entry("downReach", "Downward Reach"),
+            entry("upReach", "Upward Reach"),
+            entry("riseDuration", "Rise Duration"),
+            entry("persistDuration", "Persist Duration"),
+            entry("columnheight", "Column Height"),
+            entry("columnDepth", "Column Depth"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -67,7 +80,19 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("atkspeed", "Modifier added to the baseline of 4.0 attacks per second."),
             entry("duramulti", "Multiplier applied to the material's durability."),
             entry("armorPenetration", "Fraction of the target's armour ignored (0-1)."),
-            entry("legendary_weapons.durability", "Max durability shared by every legendary weapon."));
+            entry("legendary_weapons.durability", "Max durability shared by every legendary weapon."),
+            entry("armorPen", "Fraction of the target's armour ignored while below the health threshold (0-1)."),
+            entry("firstHitWindow", "Ticks without a hit before the first-hit bonus memory expires."),
+            entry("relentlessBelow", "Health fraction below which Relentless activates (0-1)."),
+            entry("explosionRadius", "Horizontal radius of the Erasure blast."),
+            entry("explosionDamage", "Damage at the centre of the Erasure blast."),
+            entry("teleportDistance", "Distance the wielder is teleported to safety."),
+            entry("downReach", "How far below the origin the Erasure blast reaches."),
+            entry("upReach", "How far above the origin the Erasure blast reaches."),
+            entry("riseDuration", "Ticks the Erasure column takes to rise."),
+            entry("persistDuration", "Ticks the Erasure column lingers."),
+            entry("columnheight", "Maximum height of the Erasure column."),
+            entry("columnDepth", "Maximum depth of the Erasure column."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

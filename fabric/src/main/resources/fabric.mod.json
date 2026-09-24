@@ -9,6 +9,9 @@
   ],
   "license": "LGPL-3.0",
   "environment": "*",
+  "mixins": [
+    "resonant_weaponry.mixins.json"
+  ],
   "entrypoints": {
     "main": [
       "com.shxdnw.resonant_weaponry.fabric.ResonantWeaponryFabric"

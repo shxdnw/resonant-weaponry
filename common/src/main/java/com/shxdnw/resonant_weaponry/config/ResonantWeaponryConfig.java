@@ -198,6 +198,22 @@ public final class ResonantWeaponryConfig {
         }
 
         public int durability = 3249;
+        public TheRealKnife theRealKnife = new TheRealKnife();
+
+        public static final class TheRealKnife extends ConfigSection {
+            public float armorPen = 0.40f;
+            public int firstHitWindow = 100;
+            public float relentlessBelow = 0.40f;
+            public float explosionRadius = 25f;
+            public float explosionDamage = 30f;
+            public int teleportDistance = 30;
+            public int downReach = 20;
+            public int upReach = 50;
+            public int riseDuration = 20;
+            public int persistDuration = 100;
+            public int columnheight = 100;
+            public int columnDepth = 20;
+        }
     }
 
     private static Identifier id(String path) {

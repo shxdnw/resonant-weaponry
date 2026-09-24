@@ -3,6 +3,7 @@ package com.shxdnw.resonant_weaponry.registry;
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
+import com.shxdnw.resonant_weaponry.content.LegendaryWeaponItem;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeapons;
 import com.shxdnw.resonant_weaponry.content.MaterialTier;
 import com.shxdnw.resonant_weaponry.content.WeaponDefinition;
@@ -100,7 +101,7 @@ public final class ModItems {
                 MaterialTier.NETHERITE.repairItems());
 
         Identifier id = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, definition.id());
-        return new Item(new Item.Properties()
+        return new LegendaryWeaponItem(definition, new Item.Properties()
                 .setId(ResourceKey.create(Registries.ITEM, id))
                 .sword(material, definition.attackDamage(), definition.attackSpeed())
                 .fireResistant());

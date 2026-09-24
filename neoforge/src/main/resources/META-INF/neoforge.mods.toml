@@ -2,6 +2,9 @@ modLoader = "javafml"
 loaderVersion = "[1,)"
 license = "LGPL-3.0"
 
+[[mixins]]
+config = "resonant_weaponry.mixins.json"
+
 [[mods]]
 modId = "resonant_weaponry"
 version = "${version}"

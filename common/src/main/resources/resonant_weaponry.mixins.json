@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.shxdnw.resonant_weaponry.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

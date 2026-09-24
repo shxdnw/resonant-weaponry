@@ -3,6 +3,8 @@ package com.shxdnw.resonant_weaponry.content;
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import net.minecraft.ChatFormatting;
 
+import java.util.List;
+
 public record LegendaryWeapon(
         String id,
         String displayName,
@@ -10,10 +12,17 @@ public record LegendaryWeapon(
         ChatFormatting nameColor,
         float attackDamage,
         float attackSpeed,
-        Activation activation) {
+        Activation activation,
+        Text text) {
 
     public String nameKey() {
         return "item." + ResonantWeaponry.MOD_ID + "." + id;
+    }
+
+    public record Text(List<String> lore, String abilityName, String abilityDescription, List<Passive> passives) {
+    }
+
+    public record Passive(String name, String description) {
     }
 
     public record Activation(ActivationStyle style, int cooldownTicks, int chargeTicks, int channelTicks) {
