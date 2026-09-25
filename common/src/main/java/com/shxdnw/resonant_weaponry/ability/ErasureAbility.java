@@ -1,5 +1,6 @@
 package com.shxdnw.resonant_weaponry.ability;
 
+import com.shxdnw.resonant_weaponry.DebugLog;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
 import net.minecraft.core.particles.DustParticleOptions;
@@ -24,6 +25,7 @@ public final class ErasureAbility implements LegendaryAbility {
 
         player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, activation.channelTicks(), 4));
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0f, 2.0f);
+        DebugLog.log("Erasure: channel started for {}", player.getName().getString());
 
         Channels.start(player, activation.channelTicks(),
                 elapsed -> {

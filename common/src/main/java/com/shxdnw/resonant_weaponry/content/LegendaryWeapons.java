@@ -20,7 +20,21 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("The First Move",
                                             "Double damage on your first strike to any target."),
                                     new LegendaryWeapon.Passive("Relentless",
-                                            "40% armor penetration when below 40% health."))))
+                                            "40% armor penetration when below 40% health.")))),
+            new LegendaryWeapon("gilded_arbiter", "Gilded Arbiter", WeaponType.HALBERD, ChatFormatting.GOLD, 11.5f, -2.8f,
+                    LegendaryWeapon.Activation.instant(1200),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "A heavy ceremonial polearm forged",
+                                    "for the vanguard of the deep bastions.",
+                                    "It remains as unyielding as the day it was cast."),
+                            "Impenetrable Defense",
+                            "Grants Slowness I for 10s and\nResistance II for 20s.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Showstopper",
+                                            "Deals 1.5x damage to sprinting or airborne enemies.\nApplies Wither I to hostile mobs on hit."),
+                                    new LegendaryWeapon.Passive("Counterweight",
+                                            "Hitting while moving backward applies\nSlowness I for 5 seconds."))))
     );
 
     private LegendaryWeapons() {

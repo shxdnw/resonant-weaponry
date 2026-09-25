@@ -199,6 +199,7 @@ public final class ResonantWeaponryConfig {
 
         public int durability = 3249;
         public TheRealKnife theRealKnife = new TheRealKnife();
+        public GildedArbiter gildedArbiter = new GildedArbiter();
 
         public static final class TheRealKnife extends ConfigSection {
             public float armorPen = 0.40f;
@@ -213,6 +214,16 @@ public final class ResonantWeaponryConfig {
             public int persistDuration = 100;
             public int columnheight = 100;
             public int columnDepth = 20;
+        }
+
+        public static final class GildedArbiter extends ConfigSection {
+            public int defenseSlow = 200;
+            public int defenseResistTime = 400;
+            public int defenseResistLevel = 1;
+            public float showstopperMult = 1.5f;
+            public int witherTime = 60;
+            public int witherLevel = 0;
+            public int counterSlowTime = 100;
         }
     }
 

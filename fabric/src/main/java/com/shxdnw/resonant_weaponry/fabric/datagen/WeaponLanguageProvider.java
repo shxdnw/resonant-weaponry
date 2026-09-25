@@ -66,7 +66,15 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("riseDuration", "Rise Duration"),
             entry("persistDuration", "Persist Duration"),
             entry("columnheight", "Column Height"),
-            entry("columnDepth", "Column Depth"));
+            entry("columnDepth", "Column Depth"),
+            entry("gildedArbiter", "Gilded Arbiter"),
+            entry("defenseSlow", "Defence Slow Duration"),
+            entry("defenseResistTime", "Resistance Duration"),
+            entry("defenseResistLevel", "Resistance Level"),
+            entry("showstopperMult", "Showstopper Multiplier"),
+            entry("witherTime", "Wither Duration"),
+            entry("witherLevel", "Wither Level"),
+            entry("counterSlowTime", "Counterweight Slowness Duration"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -92,7 +100,14 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("riseDuration", "Ticks the Erasure column takes to rise."),
             entry("persistDuration", "Ticks the Erasure column lingers."),
             entry("columnheight", "Maximum height of the Erasure column."),
-            entry("columnDepth", "Maximum depth of the Erasure column."));
+            entry("columnDepth", "Maximum depth of the Erasure column."),
+            entry("defenseSlow", "Ticks of Slowness I applied to the wielder."),
+            entry("defenseResistTime", "Ticks of Resistance applied to the wielder."),
+            entry("defenseResistLevel", "Resistance amplifier (1 = level II)."),
+            entry("showstopperMult", "Damage multiplier against sprinting or airborne targets."),
+            entry("witherTime", "Wither duration applied to hostile mobs on hit."),
+            entry("witherLevel", "Wither amplifier (0 = level I)."),
+            entry("counterSlowTime", "Slowness duration applied when hitting while moving backward."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
