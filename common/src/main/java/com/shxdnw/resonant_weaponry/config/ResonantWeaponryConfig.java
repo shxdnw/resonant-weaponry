@@ -200,12 +200,14 @@ public final class ResonantWeaponryConfig {
         public TheRealKnife theRealKnife = new TheRealKnife();
         public GildedArbiter gildedArbiter = new GildedArbiter();
         public GaleCutter galeCutter = new GaleCutter();
+        public BloodScourge bloodScourge = new BloodScourge();
 
         public Stats stats(String id) {
             return switch (id) {
                 case "the_real_knife" -> theRealKnife;
                 case "gilded_arbiter" -> gildedArbiter;
                 case "gale_cutter" -> galeCutter;
+                case "blood_scourge" -> bloodScourge;
                 default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
             };
         }
@@ -267,6 +269,23 @@ public final class ResonantWeaponryConfig {
             public int aftercutMaxStacks = 3;
             public int aftercutDelay = 80;
             public float aftercutDamage = 6.0f;
+        }
+
+        public static final class BloodScourge extends Stats {
+            public BloodScourge() {
+                super(6.0f, -1.2f, 3249);
+            }
+
+            public float slashReach = 5.0f;
+            public float slashDamage = 3.0f;
+            public int witherDuration = 60;
+            public int blindnessDuration = 60;
+            public int slowDuration = 100;
+            public float sanguineHealPct = 0.5f;
+            public int sanguineCooldown = 600;
+            public float hemoAoEDamage = 12.0f;
+            public float hemoAoERadius = 5.0f;
+            public int hemoCooldown = 400;
         }
     }
 

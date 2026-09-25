@@ -49,7 +49,19 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Tailwind",
                                             "On hit, gain Speed II for 5s.\n10s cooldown."),
                                     new LegendaryWeapon.Passive("Aftercut",
-                                            "Every 3rd hit applies an aftercut.\nAfter 4s, deals magic damage\nand knocks the target back."))))
+                                            "Every 3rd hit applies an aftercut.\nAfter 4s, deals magic damage\nand knocks the target back.")))),
+            new LegendaryWeapon("blood_scourge", "Blood Scourge", WeaponType.SICKLE, ChatFormatting.DARK_RED,
+                    LegendaryWeapon.Activation.instant(300),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "An ancient cultist's tool repurposed for war."),
+                            "Eviscerate",
+                            "Unleash a bloody slash in a 5-block reach,\npulling enemies closer and afflicting them\nwith Wither, Blindness, and Slowness.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Sanguine",
+                                            "Killing a hostile mob restores 50% of your HP.\n30s cooldown."),
+                                    new LegendaryWeapon.Passive("Hemorrhagic Shock",
+                                            "Hitting a debuffed enemy triggers a\nblood explosion dealing AoE damage.\n20s cooldown."))))
     );
 
     private LegendaryWeapons() {

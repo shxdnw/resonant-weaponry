@@ -83,7 +83,18 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("tailwindCooldown", "Tailwind Cooldown"),
             entry("aftercutMaxStacks", "Aftercut Hit Count"),
             entry("aftercutDelay", "Aftercut Delay"),
-            entry("aftercutDamage", "Aftercut Damage"));
+            entry("aftercutDamage", "Aftercut Damage"),
+            entry("bloodScourge", "Blood Scourge"),
+            entry("slashReach", "Slash Reach"),
+            entry("slashDamage", "Slash Damage"),
+            entry("witherDuration", "Wither Duration"),
+            entry("blindnessDuration", "Blindness Duration"),
+            entry("slowDuration", "Slowness Duration"),
+            entry("sanguineHealPct", "Sanguine Heal Fraction"),
+            entry("sanguineCooldown", "Sanguine Cooldown"),
+            entry("hemoAoEDamage", "Hemorrhagic Shock Damage"),
+            entry("hemoAoERadius", "Hemorrhagic Shock Radius"),
+            entry("hemoCooldown", "Hemorrhagic Shock Cooldown"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -124,7 +135,17 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("tailwindCooldown", "Ticks between Tailwind procs."),
             entry("aftercutMaxStacks", "Hits needed to trigger an aftercut."),
             entry("aftercutDelay", "Ticks before the aftercut lands."),
-            entry("aftercutDamage", "Magic damage dealt by the aftercut."));
+            entry("aftercutDamage", "Magic damage dealt by the aftercut."),
+            entry("slashReach", "Forward reach of the Eviscerate slash."),
+            entry("slashDamage", "Damage dealt by the Eviscerate slash."),
+            entry("witherDuration", "Wither duration applied by Eviscerate."),
+            entry("blindnessDuration", "Blindness duration applied by Eviscerate."),
+            entry("slowDuration", "Slowness duration applied by Eviscerate."),
+            entry("sanguineHealPct", "Fraction of max health healed on a hostile kill (0-1)."),
+            entry("sanguineCooldown", "Ticks between Sanguine heals."),
+            entry("hemoAoEDamage", "Magic damage dealt by Hemorrhagic Shock."),
+            entry("hemoAoERadius", "Radius of the Hemorrhagic Shock burst."),
+            entry("hemoCooldown", "Ticks between Hemorrhagic Shock procs."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
