@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class LegendaryWeapons {
     public static final List<LegendaryWeapon> ALL = List.of(
-            new LegendaryWeapon("the_real_knife", "The Real Knife", WeaponType.DAGGER, ChatFormatting.RED, 5.0f, -1.0f,
+            new LegendaryWeapon("the_real_knife", "The Real Knife", WeaponType.DAGGER, ChatFormatting.RED,
                     LegendaryWeapon.Activation.channeled(600, 20, 100),
                     new LegendaryWeapon.Text(
                             List.of(
@@ -21,7 +21,7 @@ public final class LegendaryWeapons {
                                             "Double damage on your first strike to any target."),
                                     new LegendaryWeapon.Passive("Relentless",
                                             "40% armor penetration when below 40% health.")))),
-            new LegendaryWeapon("gilded_arbiter", "Gilded Arbiter", WeaponType.HALBERD, ChatFormatting.GOLD, 11.5f, -2.8f,
+            new LegendaryWeapon("gilded_arbiter", "Gilded Arbiter", WeaponType.HALBERD, ChatFormatting.GOLD,
                     LegendaryWeapon.Activation.instant(1200),
                     new LegendaryWeapon.Text(
                             List.of(

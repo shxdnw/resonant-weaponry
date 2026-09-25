@@ -38,6 +38,7 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("diamond", "Diamond"),
             entry("netherite", "Netherite"),
             entry("durability", "Durability"),
+            entry("attackDamage", "Attack Damage"),
             entry("attackDamageBonus", "Attack Damage Bonus"),
             entry("enchantability", "Enchantability"),
             entry("weapon_types", "Weapon Types"),
@@ -82,13 +83,14 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("lootTableBlacklist", "Skip chest loot tables whose path contains any of these substrings."),
             entry("friendlyFire", "Allow area abilities to hit same-team players. The wielder is always excluded."),
             entry("durability", "Base durability before the weapon type multiplier."),
+            entry("attackDamage", "Final item attack damage for this weapon."),
+            entry("legendary_weapons.durability", "Max durability for this weapon."),
             entry("attackDamageBonus", "Flat damage added to the weapon type's base damage."),
             entry("enchantability", "Higher means better enchantment rolls."),
             entry("basedmg", "Base damage before the material bonus."),
             entry("atkspeed", "Modifier added to the baseline of 4.0 attacks per second."),
             entry("duramulti", "Multiplier applied to the material's durability."),
             entry("armorPenetration", "Fraction of the target's armour ignored (0-1)."),
-            entry("legendary_weapons.durability", "Max durability shared by every legendary weapon."),
             entry("armorPen", "Fraction of the target's armour ignored while below the health threshold (0-1)."),
             entry("firstHitWindow", "Ticks without a hit before the first-hit bonus memory expires."),
             entry("relentlessBelow", "Health fraction below which Relentless activates (0-1)."),
@@ -132,31 +134,40 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
     }
 
     private static void config(TranslationBuilder builder, Class<?> configClass, String configId) {
-        addTranslation(builder, key(configId), configId, configId);
+        addTranslation(builder, key(configId), configId, configId, configId);
         for (Field field : fields(configClass)) {
             String fieldPath = configId + "." + field.getName();
             String fieldKey = key(fieldPath);
-            addTranslation(builder, fieldKey, fieldPath, field.getName());
+            addTranslation(builder, fieldKey, fieldPath, configId, field.getName());
             if (ConfigSection.class.isAssignableFrom(field.getType())) {
                 for (Field sectionField : fields(field.getType())) {
                     addTranslation(builder, fieldKey + "." + sectionField.getName(),
-                            fieldPath + "." + sectionField.getName(), sectionField.getName());
+                            fieldPath + "." + sectionField.getName(), configId, sectionField.getName());
                 }
             }
         }
     }
 
-    private static void addTranslation(TranslationBuilder builder, String key, String path, String name) {
-        String label = LABELS.getOrDefault(path, LABELS.get(name));
+    private static void addTranslation(TranslationBuilder builder, String key, String path, String configId, String name) {
+        String label = firstNonNull(LABELS.get(path), LABELS.get(configId + "." + name), LABELS.get(name));
         if (label == null) {
             throw new IllegalStateException("Missing config label for '" + path + "'");
         }
         builder.add(key, label);
 
-        String description = DESCRIPTIONS.getOrDefault(path, DESCRIPTIONS.get(name));
+        String description = firstNonNull(DESCRIPTIONS.get(path), DESCRIPTIONS.get(configId + "." + name), DESCRIPTIONS.get(name));
         if (description != null) {
             builder.add(key + ".desc", description);
         }
+    }
+
+    private static String firstNonNull(String... values) {
+        for (String value : values) {
+            if (value != null) {
+                return value;
+            }
+        }
+        return null;
     }
 
     private static List<Field> fields(Class<?> type) {

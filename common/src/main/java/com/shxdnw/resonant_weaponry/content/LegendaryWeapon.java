@@ -10,8 +10,6 @@ public record LegendaryWeapon(
         String displayName,
         WeaponType archetype,
         ChatFormatting nameColor,
-        float attackDamage,
-        float attackSpeed,
         Activation activation,
         Text text) {
 

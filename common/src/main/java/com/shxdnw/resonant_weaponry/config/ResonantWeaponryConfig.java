@@ -197,11 +197,34 @@ public final class ResonantWeaponryConfig {
             super(id("legendary_weapons"));
         }
 
-        public int durability = 3249;
         public TheRealKnife theRealKnife = new TheRealKnife();
         public GildedArbiter gildedArbiter = new GildedArbiter();
 
-        public static final class TheRealKnife extends ConfigSection {
+        public Stats stats(String id) {
+            return switch (id) {
+                case "the_real_knife" -> theRealKnife;
+                case "gilded_arbiter" -> gildedArbiter;
+                default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
+            };
+        }
+
+        public static class Stats extends ConfigSection {
+            public float attackDamage;
+            public float atkspeed;
+            public int durability;
+
+            Stats(float attackDamage, float atkspeed, int durability) {
+                this.attackDamage = attackDamage;
+                this.atkspeed = atkspeed;
+                this.durability = durability;
+            }
+        }
+
+        public static final class TheRealKnife extends Stats {
+            public TheRealKnife() {
+                super(5.0f, -1.0f, 3249);
+            }
+
             public float armorPen = 0.40f;
             public int firstHitWindow = 100;
             public float relentlessBelow = 0.40f;
@@ -216,7 +239,11 @@ public final class ResonantWeaponryConfig {
             public int columnDepth = 20;
         }
 
-        public static final class GildedArbiter extends ConfigSection {
+        public static final class GildedArbiter extends Stats {
+            public GildedArbiter() {
+                super(11.5f, -2.8f, 3249);
+            }
+
             public int defenseSlow = 200;
             public int defenseResistTime = 400;
             public int defenseResistLevel = 1;

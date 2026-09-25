@@ -92,9 +92,11 @@ public final class ModItems {
     }
 
     private static Item createLegendary(LegendaryWeapon definition) {
+        ResonantWeaponryConfig.LegendaryWeapons.Stats stats =
+                ResonantWeaponryConfig.legendaryWeapons.stats(definition.id());
         ToolMaterial material = new ToolMaterial(
                 MaterialTier.NETHERITE.incorrectBlocksForDrops(),
-                ResonantWeaponryConfig.legendaryWeapons.durability,
+                stats.durability,
                 1.0F,
                 0.0F,
                 MaterialTier.NETHERITE.enchantability(),
@@ -103,7 +105,7 @@ public final class ModItems {
         Identifier id = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, definition.id());
         return new LegendaryWeaponItem(definition, new Item.Properties()
                 .setId(ResourceKey.create(Registries.ITEM, id))
-                .sword(material, definition.attackDamage(), definition.attackSpeed())
+                .sword(material, stats.attackDamage, stats.atkspeed)
                 .fireResistant());
     }
 }
