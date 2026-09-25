@@ -34,7 +34,22 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Showstopper",
                                             "Deals 1.5x damage to sprinting or airborne enemies.\nApplies Wither I to hostile mobs on hit."),
                                     new LegendaryWeapon.Passive("Counterweight",
-                                            "Hitting while moving backward applies\nSlowness I for 5 seconds."))))
+                                            "Hitting while moving backward applies\nSlowness I for 5 seconds.")))),
+            new LegendaryWeapon("gale_cutter", "Gale Cutter", WeaponType.SCYTHE, ChatFormatting.GREEN,
+                    LegendaryWeapon.Activation.instant(400),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "A scythe that commands the storm.",
+                                    "Each swing whistles with the force",
+                                    "of gale, leaving a vacuum",
+                                    "in its wake."),
+                            "Cyclone",
+                            "Unleash a violent wind blast in a 7-block radius,\ndealing magic damage and launching\nenemies away from you.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Tailwind",
+                                            "On hit, gain Speed II for 5s.\n10s cooldown."),
+                                    new LegendaryWeapon.Passive("Aftercut",
+                                            "Every 3rd hit applies an aftercut.\nAfter 4s, deals magic damage\nand knocks the target back."))))
     );
 
     private LegendaryWeapons() {

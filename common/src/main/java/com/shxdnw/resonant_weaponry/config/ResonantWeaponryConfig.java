@@ -199,11 +199,13 @@ public final class ResonantWeaponryConfig {
 
         public TheRealKnife theRealKnife = new TheRealKnife();
         public GildedArbiter gildedArbiter = new GildedArbiter();
+        public GaleCutter galeCutter = new GaleCutter();
 
         public Stats stats(String id) {
             return switch (id) {
                 case "the_real_knife" -> theRealKnife;
                 case "gilded_arbiter" -> gildedArbiter;
+                case "gale_cutter" -> galeCutter;
                 default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
             };
         }
@@ -251,6 +253,20 @@ public final class ResonantWeaponryConfig {
             public int witherTime = 60;
             public int witherLevel = 0;
             public int counterSlowTime = 100;
+        }
+
+        public static final class GaleCutter extends Stats {
+            public GaleCutter() {
+                super(9.0f, -2.6f, 3249);
+            }
+
+            public float cycloneRadius = 7.0f;
+            public float cycloneDamage = 10.0f;
+            public int tailwindSpeedDuration = 100;
+            public int tailwindCooldown = 200;
+            public int aftercutMaxStacks = 3;
+            public int aftercutDelay = 80;
+            public float aftercutDamage = 6.0f;
         }
     }
 

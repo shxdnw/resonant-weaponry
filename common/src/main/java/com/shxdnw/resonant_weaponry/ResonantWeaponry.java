@@ -1,12 +1,17 @@
 package com.shxdnw.resonant_weaponry;
 
+import com.shxdnw.resonant_weaponry.ability.Aftercuts;
 import com.shxdnw.resonant_weaponry.ability.Channels;
+import com.shxdnw.resonant_weaponry.ability.CycloneAbility;
 import com.shxdnw.resonant_weaponry.ability.ErasureAbility;
 import com.shxdnw.resonant_weaponry.ability.ErasureFx;
 import com.shxdnw.resonant_weaponry.ability.FirstHitTracker;
 import com.shxdnw.resonant_weaponry.ability.ImpenetrableDefenseAbility;
 import com.shxdnw.resonant_weaponry.ability.LegendaryAbilities;
 import com.shxdnw.resonant_weaponry.ability.MovementTracker;
+import com.shxdnw.resonant_weaponry.ability.PassiveCooldowns;
+import com.shxdnw.resonant_weaponry.ability.Scheduler;
+import com.shxdnw.resonant_weaponry.ability.ServerClock;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.shxdnw.resonant_weaponry.registry.ModItems;
 import dev.architectury.event.events.common.PlayerEvent;
@@ -23,10 +28,13 @@ public final class ResonantWeaponry {
         ResonantWeaponryConfig.init();
         LegendaryAbilities.register("the_real_knife", new ErasureAbility());
         LegendaryAbilities.register("gilded_arbiter", new ImpenetrableDefenseAbility());
+        LegendaryAbilities.register("gale_cutter", new CycloneAbility());
 
         TickEvent.SERVER_POST.register(server -> {
+            ServerClock.tick();
             Channels.tick(server);
             ErasureFx.tick(server);
+            Scheduler.tick(server);
             FirstHitTracker.tick();
             MovementTracker.tick(server);
         });
@@ -34,6 +42,8 @@ public final class ResonantWeaponry {
             FirstHitTracker.clear(player);
             Channels.clear(player);
             MovementTracker.forget(player);
+            PassiveCooldowns.forget(player);
+            Aftercuts.forget(player);
         });
 
         ModItems.register();

@@ -75,7 +75,15 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("showstopperMult", "Showstopper Multiplier"),
             entry("witherTime", "Wither Duration"),
             entry("witherLevel", "Wither Level"),
-            entry("counterSlowTime", "Counterweight Slowness Duration"));
+            entry("counterSlowTime", "Counterweight Slowness Duration"),
+            entry("galeCutter", "Gale Cutter"),
+            entry("cycloneRadius", "Cyclone Radius"),
+            entry("cycloneDamage", "Cyclone Damage"),
+            entry("tailwindSpeedDuration", "Tailwind Speed Duration"),
+            entry("tailwindCooldown", "Tailwind Cooldown"),
+            entry("aftercutMaxStacks", "Aftercut Hit Count"),
+            entry("aftercutDelay", "Aftercut Delay"),
+            entry("aftercutDamage", "Aftercut Damage"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -109,7 +117,14 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("showstopperMult", "Damage multiplier against sprinting or airborne targets."),
             entry("witherTime", "Wither duration applied to hostile mobs on hit."),
             entry("witherLevel", "Wither amplifier (0 = level I)."),
-            entry("counterSlowTime", "Slowness duration applied when hitting while moving backward."));
+            entry("counterSlowTime", "Slowness duration applied when hitting while moving backward."),
+            entry("cycloneRadius", "Horizontal radius of the Cyclone blast."),
+            entry("cycloneDamage", "Magic damage dealt by Cyclone."),
+            entry("tailwindSpeedDuration", "Ticks of Speed II granted on hit."),
+            entry("tailwindCooldown", "Ticks between Tailwind procs."),
+            entry("aftercutMaxStacks", "Hits needed to trigger an aftercut."),
+            entry("aftercutDelay", "Ticks before the aftercut lands."),
+            entry("aftercutDamage", "Magic damage dealt by the aftercut."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

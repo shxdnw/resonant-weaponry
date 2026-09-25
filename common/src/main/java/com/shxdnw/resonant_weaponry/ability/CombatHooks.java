@@ -3,6 +3,7 @@ package com.shxdnw.resonant_weaponry.ability;
 import com.shxdnw.resonant_weaponry.DebugLog;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeaponItem;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -49,20 +50,30 @@ public final class CombatHooks {
     }
 
     public static void onHit(Player player, LivingEntity target) {
-        if (!"gilded_arbiter".equals(weaponId(player))) {
+        String weapon = weaponId(player);
+        if ("gilded_arbiter".equals(weapon)) {
+            ResonantWeaponryConfig.LegendaryWeapons.GildedArbiter config =
+                    ResonantWeaponryConfig.legendaryWeapons.gildedArbiter;
+            if (target instanceof Enemy) {
+                target.addEffect(new MobEffectInstance(MobEffects.WITHER, config.witherTime, config.witherLevel));
+                DebugLog.log("Showstopper: wither applied to {}", target.getName().getString());
+            }
+            boolean backward = MovementTracker.isMovingBackward(player);
+            DebugLog.log("Counterweight check for {}: backward={}", player.getName().getString(), backward);
+            if (backward) {
+                target.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, config.counterSlowTime, 0));
+                DebugLog.log("Counterweight: slowness applied to {}", target.getName().getString());
+            }
             return;
         }
-        ResonantWeaponryConfig.LegendaryWeapons.GildedArbiter config =
-                ResonantWeaponryConfig.legendaryWeapons.gildedArbiter;
-        if (target instanceof Enemy) {
-            target.addEffect(new MobEffectInstance(MobEffects.WITHER, config.witherTime, config.witherLevel));
-            DebugLog.log("Showstopper: wither applied to {}", target.getName().getString());
-        }
-        boolean backward = MovementTracker.isMovingBackward(player);
-        DebugLog.log("Counterweight check for {}: backward={}", player.getName().getString(), backward);
-        if (backward) {
-            target.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, config.counterSlowTime, 0));
-            DebugLog.log("Counterweight: slowness applied to {}", target.getName().getString());
+        if ("gale_cutter".equals(weapon) && player instanceof ServerPlayer serverPlayer) {
+            ResonantWeaponryConfig.LegendaryWeapons.GaleCutter config =
+                    ResonantWeaponryConfig.legendaryWeapons.galeCutter;
+            if (PassiveCooldowns.ready(serverPlayer, "gale_cutter:tailwind", config.tailwindCooldown)) {
+                serverPlayer.addEffect(new MobEffectInstance(MobEffects.SPEED, config.tailwindSpeedDuration, 1));
+                DebugLog.log("Tailwind: speed applied to {}", serverPlayer.getName().getString());
+            }
+            Aftercuts.onHit(serverPlayer, target);
         }
     }
 
