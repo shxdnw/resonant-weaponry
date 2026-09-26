@@ -201,6 +201,7 @@ public final class ResonantWeaponryConfig {
         public GildedArbiter gildedArbiter = new GildedArbiter();
         public GaleCutter galeCutter = new GaleCutter();
         public BloodScourge bloodScourge = new BloodScourge();
+        public Voidfang voidfang = new Voidfang();
 
         public Stats stats(String id) {
             return switch (id) {
@@ -208,6 +209,7 @@ public final class ResonantWeaponryConfig {
                 case "gilded_arbiter" -> gildedArbiter;
                 case "gale_cutter" -> galeCutter;
                 case "blood_scourge" -> bloodScourge;
+                case "voidfang" -> voidfang;
                 default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
             };
         }
@@ -286,6 +288,20 @@ public final class ResonantWeaponryConfig {
             public float hemoAoEDamage = 12.0f;
             public float hemoAoERadius = 5.0f;
             public int hemoCooldown = 400;
+        }
+
+        public static final class Voidfang extends Stats {
+            public Voidfang() {
+                super(5.5f, -1.4f, 3249);
+            }
+
+            public int teleportDistance = 5;
+            public float trailDamage = 18.0f;
+            public float trailRadius = 4.0f;
+            public int trailDelay = 10;
+            public int maxStacks = 4;
+            public float trueDamage = 8.0f;
+            public float nullifyChance = 0.20f;
         }
     }
 

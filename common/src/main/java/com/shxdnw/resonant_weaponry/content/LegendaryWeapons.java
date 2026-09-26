@@ -61,7 +61,20 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Sanguine",
                                             "Killing a hostile mob restores 50% of your HP.\n30s cooldown."),
                                     new LegendaryWeapon.Passive("Hemorrhagic Shock",
-                                            "Hitting a debuffed enemy triggers a\nblood explosion dealing AoE damage.\n20s cooldown."))))
+                                            "Hitting a debuffed enemy triggers a\nblood explosion dealing AoE damage.\n20s cooldown.")))),
+            new LegendaryWeapon("voidfang", "Voidfang", WeaponType.RAPIER, ChatFormatting.DARK_PURPLE,
+                    LegendaryWeapon.Activation.instant(300),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "A rapier that doesn't reflect light.",
+                                    "The blade seems to bend toward the Void."),
+                            "Rupture",
+                            "Surge forward 5 blocks, leaving a void rift.\n0.5s later, your trail erupts,\ndealing heavy damage and knockback.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Voidscar",
+                                            "Every hit builds a Voidscar stack.\nAt 4 stacks, deals bonus true damage."),
+                                    new LegendaryWeapon.Passive("Event Horizon",
+                                            "20% chance to nullify incoming damage\nwhile you have Voidscar stacks."))))
     );
 
     private LegendaryWeapons() {

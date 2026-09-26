@@ -94,7 +94,14 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("sanguineCooldown", "Sanguine Cooldown"),
             entry("hemoAoEDamage", "Hemorrhagic Shock Damage"),
             entry("hemoAoERadius", "Hemorrhagic Shock Radius"),
-            entry("hemoCooldown", "Hemorrhagic Shock Cooldown"));
+            entry("hemoCooldown", "Hemorrhagic Shock Cooldown"),
+            entry("voidfang", "Voidfang"),
+            entry("trailDamage", "Trail Damage"),
+            entry("trailRadius", "Trail Radius"),
+            entry("trailDelay", "Trail Delay"),
+            entry("maxStacks", "Max Stacks"),
+            entry("trueDamage", "True Damage"),
+            entry("nullifyChance", "Nullify Chance"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -145,7 +152,13 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("sanguineCooldown", "Ticks between Sanguine heals."),
             entry("hemoAoEDamage", "Magic damage dealt by Hemorrhagic Shock."),
             entry("hemoAoERadius", "Radius of the Hemorrhagic Shock burst."),
-            entry("hemoCooldown", "Ticks between Hemorrhagic Shock procs."));
+            entry("hemoCooldown", "Ticks between Hemorrhagic Shock procs."),
+            entry("trailDamage", "Damage per trail segment at the centre."),
+            entry("trailRadius", "Radius of each trail segment."),
+            entry("trailDelay", "Ticks before the trail erupts."),
+            entry("maxStacks", "Voidscar stacks needed for the bonus hit."),
+            entry("trueDamage", "Bonus damage at full Voidscar stacks (bypasses armour)."),
+            entry("nullifyChance", "Chance to nullify an incoming hit while you have Voidscar stacks (0-1)."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

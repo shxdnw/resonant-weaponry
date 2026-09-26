@@ -50,6 +50,18 @@ public final class CombatHooks {
         }
     }
 
+    public static boolean nullifyIncoming(LivingEntity victim, DamageSource source) {
+        if (!(victim instanceof ServerPlayer player)) {
+            return false;
+        }
+        for (Passive passive : passives(player)) {
+            if (passive.nullifyIncoming(player, source)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private static List<Passive> passives(ServerPlayer player) {
         ItemStack stack = player.getMainHandItem();
         return stack.getItem() instanceof LegendaryWeaponItem item
