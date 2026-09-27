@@ -202,6 +202,7 @@ public final class ResonantWeaponryConfig {
         public GaleCutter galeCutter = new GaleCutter();
         public BloodScourge bloodScourge = new BloodScourge();
         public Voidfang voidfang = new Voidfang();
+        public YashasEdge yashasEdge = new YashasEdge();
 
         public Stats stats(String id) {
             return switch (id) {
@@ -210,6 +211,7 @@ public final class ResonantWeaponryConfig {
                 case "gale_cutter" -> galeCutter;
                 case "blood_scourge" -> bloodScourge;
                 case "voidfang" -> voidfang;
+                case "yashas_edge" -> yashasEdge;
                 default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
             };
         }
@@ -302,6 +304,25 @@ public final class ResonantWeaponryConfig {
             public int maxStacks = 4;
             public float trueDamage = 8.0f;
             public float nullifyChance = 0.20f;
+        }
+
+        public static final class YashasEdge extends Stats {
+            public YashasEdge() {
+                super(6.0f, -1.6f, 3249);
+            }
+
+            public int dashTicks = 20;
+            public float dashDamage = 10.0f;
+            public float aftercutDamage = 8.0f;
+            public int aftercutDelay = 20;
+            public boolean aftercutRehit = true;
+            public int maxStacks = 8;
+            public int decayAfter = 100;
+            public int decayEvery = 20;
+            public float stackBonus = 0.05f;
+            public int anchorCooldown = 160;
+            public int anchorDuration = 60;
+            public int anchorLevel = 0;
         }
     }
 

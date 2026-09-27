@@ -71,7 +71,7 @@ public final class ErasureAbility implements LegendaryAbility {
         DamageSource source = level.damageSources().explosion(player, player);
 
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
-            if (entity == player) {
+            if (!Targeting.canAffect(player, entity)) {
                 continue;
             }
             double dx = entity.getX() - origin.x;

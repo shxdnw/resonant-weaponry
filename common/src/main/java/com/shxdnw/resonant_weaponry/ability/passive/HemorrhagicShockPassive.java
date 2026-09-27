@@ -2,6 +2,7 @@ package com.shxdnw.resonant_weaponry.ability.passive;
 
 import com.shxdnw.resonant_weaponry.DebugLog;
 import com.shxdnw.resonant_weaponry.ability.PassiveCooldowns;
+import com.shxdnw.resonant_weaponry.ability.Targeting;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +28,7 @@ public final class HemorrhagicShockPassive implements Passive {
                 position.x - config.hemoAoERadius, position.y - 2.0, position.z - config.hemoAoERadius,
                 position.x + config.hemoAoERadius, position.y + 4.0, position.z + config.hemoAoERadius);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, area)) {
-            if (entity == player) {
+            if (!Targeting.canAffect(player, entity)) {
                 continue;
             }
             entity.invulnerableTime = 0;

@@ -29,7 +29,7 @@ public final class CycloneAbility implements LegendaryAbility {
                 center.x - radius, center.y - 2.0, center.z - radius,
                 center.x + radius, center.y + 5.0, center.z + radius);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
-            if (entity == player) {
+            if (!Targeting.canAffect(player, entity)) {
                 continue;
             }
             double dx = entity.getX() - center.x;

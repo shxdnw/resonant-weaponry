@@ -73,7 +73,7 @@ public final class RuptureAbility implements LegendaryAbility {
                     point.x - config.trailRadius, point.y - 2.0, point.z - config.trailRadius,
                     point.x + config.trailRadius, point.y + 3.0, point.z + config.trailRadius);
             for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, area)) {
-                if (entity == owner) {
+                if (!Targeting.canAffect(owner, entity)) {
                     continue;
                 }
                 double dx = entity.getX() - point.x;

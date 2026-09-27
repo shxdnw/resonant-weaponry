@@ -74,7 +74,21 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Voidscar",
                                             "Every hit builds a Voidscar stack.\nAt 4 stacks, deals bonus true damage."),
                                     new LegendaryWeapon.Passive("Event Horizon",
-                                            "20% chance to nullify incoming damage\nwhile you have Voidscar stacks."))))
+                                            "20% chance to nullify incoming damage\nwhile you have Voidscar stacks.")))),
+            new LegendaryWeapon("yashas_edge", "Yasha's Edge", WeaponType.KATANA, ChatFormatting.DARK_AQUA,
+                    LegendaryWeapon.Activation.instant(400),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "A swift Nether blade.",
+                                    "They say if you're fast enough with the draw,",
+                                    "you can hit someone twice with a single swing."),
+                            "Yasha's Vengeance",
+                            "Dash forward with a sweeping strike.\nEnemies hit take magic damage.\nAn aftercut deals additional magic damage\nto everything in your wake.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Momentum",
+                                            "Each hit grants +5% attack speed (max 40%).\nDecays after 5s without hitting."),
+                                    new LegendaryWeapon.Passive("Anchor",
+                                            "Hitting an enemy applies Slowness for 3s.\n8s cooldown per weapon."))))
     );
 
     private LegendaryWeapons() {

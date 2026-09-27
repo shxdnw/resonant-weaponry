@@ -101,7 +101,17 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("trailDelay", "Trail Delay"),
             entry("maxStacks", "Max Stacks"),
             entry("trueDamage", "True Damage"),
-            entry("nullifyChance", "Nullify Chance"));
+            entry("nullifyChance", "Nullify Chance"),
+            entry("yashasEdge", "Yasha's Edge"),
+            entry("dashTicks", "Dash Duration"),
+            entry("dashDamage", "Dash Damage"),
+            entry("aftercutRehit", "Aftercut Can Re-hit"),
+            entry("decayAfter", "Momentum Decay Delay"),
+            entry("decayEvery", "Momentum Decay Interval"),
+            entry("stackBonus", "Momentum Per Stack"),
+            entry("anchorCooldown", "Anchor Cooldown"),
+            entry("anchorDuration", "Anchor Duration"),
+            entry("anchorLevel", "Anchor Level"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -158,7 +168,17 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("trailDelay", "Ticks before the trail erupts."),
             entry("maxStacks", "Voidscar stacks needed for the bonus hit."),
             entry("trueDamage", "Bonus damage at full Voidscar stacks (bypasses armour)."),
-            entry("nullifyChance", "Chance to nullify an incoming hit while you have Voidscar stacks (0-1)."));
+            entry("nullifyChance", "Chance to nullify an incoming hit while you have Voidscar stacks (0-1)."),
+            entry("dashTicks", "Ticks the dash lasts."),
+            entry("dashDamage", "Magic damage dealt per dash hit."),
+            entry("aftercutRehit", "Whether the aftercut can hit entities already struck by the dash."),
+            entry("decayAfter", "Ticks without a hit before Momentum starts decaying."),
+            entry("decayEvery", "Ticks per stack lost while decaying."),
+            entry("stackBonus", "Attack-speed fraction granted per Momentum stack."),
+            entry("anchorCooldown", "Ticks between Anchor procs per weapon."),
+            entry("anchorDuration", "Slowness duration applied by Anchor."),
+            entry("anchorLevel", "Slowness amplifier (0 = level I)."),
+            entry("legendary_weapons.yashasEdge.maxStacks", "Momentum stacks needed to reach the attack-speed cap."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

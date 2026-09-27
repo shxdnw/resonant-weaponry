@@ -10,17 +10,22 @@ import com.shxdnw.resonant_weaponry.ability.EviscerateAbility;
 import com.shxdnw.resonant_weaponry.ability.FirstHitTracker;
 import com.shxdnw.resonant_weaponry.ability.ImpenetrableDefenseAbility;
 import com.shxdnw.resonant_weaponry.ability.LegendaryAbilities;
+import com.shxdnw.resonant_weaponry.ability.Momentum;
 import com.shxdnw.resonant_weaponry.ability.MovementTracker;
 import com.shxdnw.resonant_weaponry.ability.PassiveCooldowns;
 import com.shxdnw.resonant_weaponry.ability.RuptureAbility;
 import com.shxdnw.resonant_weaponry.ability.Scheduler;
 import com.shxdnw.resonant_weaponry.ability.ServerClock;
 import com.shxdnw.resonant_weaponry.ability.VoidStacks;
+import com.shxdnw.resonant_weaponry.ability.YashaDash;
+import com.shxdnw.resonant_weaponry.ability.YashasVengeanceAbility;
 import com.shxdnw.resonant_weaponry.ability.passive.AftercutPassive;
+import com.shxdnw.resonant_weaponry.ability.passive.AnchorPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.CounterweightPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.EventHorizonPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.HemorrhagicShockPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.LegendaryPassives;
+import com.shxdnw.resonant_weaponry.ability.passive.MomentumPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.RelentlessPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.SanguinePassive;
 import com.shxdnw.resonant_weaponry.ability.passive.ShowstopperPassive;
@@ -31,6 +36,7 @@ import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import com.shxdnw.resonant_weaponry.registry.ModItems;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.EntityEvent;
+import dev.architectury.event.events.common.LifecycleEvent;
 import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.event.events.common.TickEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,12 +56,14 @@ public final class ResonantWeaponry {
         LegendaryAbilities.register("gale_cutter", new CycloneAbility());
         LegendaryAbilities.register("blood_scourge", new EviscerateAbility());
         LegendaryAbilities.register("voidfang", new RuptureAbility());
+        LegendaryAbilities.register("yashas_edge", new YashasVengeanceAbility());
 
         LegendaryPassives.register("the_real_knife", new TheFirstMovePassive(), new RelentlessPassive());
         LegendaryPassives.register("gilded_arbiter", new ShowstopperPassive(), new CounterweightPassive());
         LegendaryPassives.register("gale_cutter", new TailwindPassive(), new AftercutPassive());
         LegendaryPassives.register("blood_scourge", new SanguinePassive(), new HemorrhagicShockPassive());
         LegendaryPassives.register("voidfang", new VoidscarPassive(), new EventHorizonPassive());
+        LegendaryPassives.register("yashas_edge", new MomentumPassive(), new AnchorPassive());
 
         TickEvent.SERVER_POST.register(server -> {
             ServerClock.tick();
@@ -64,8 +72,12 @@ public final class ResonantWeaponry {
             Scheduler.tick(server);
             FirstHitTracker.tick();
             MovementTracker.tick(server);
+            YashaDash.tick(server);
+            Momentum.tick(server);
         });
         PlayerEvent.PLAYER_QUIT.register(ResonantWeaponry::clearState);
+        PlayerEvent.CHANGE_DIMENSION.register((player, from, to) -> clearState(player));
+        LifecycleEvent.SERVER_STOPPING.register(server -> Scheduler.clear());
         EntityEvent.LIVING_DEATH.register((entity, source) -> {
             if (entity instanceof ServerPlayer dying) {
                 clearState(dying);
@@ -86,5 +98,7 @@ public final class ResonantWeaponry {
         PassiveCooldowns.forget(player);
         Aftercuts.forget(player);
         VoidStacks.forget(player);
+        YashaDash.cancel(player);
+        Momentum.forget(player);
     }
 }

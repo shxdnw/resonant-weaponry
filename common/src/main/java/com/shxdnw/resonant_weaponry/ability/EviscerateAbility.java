@@ -31,7 +31,7 @@ public final class EviscerateAbility implements LegendaryAbility {
                 center.x - config.slashReach / 2.0, player.getY() - 1.0, center.z - config.slashReach / 2.0,
                 center.x + config.slashReach / 2.0, player.getY() + 3.0, center.z + config.slashReach / 2.0);
         for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
-            if (entity == player) {
+            if (!Targeting.canAffect(player, entity)) {
                 continue;
             }
             entity.invulnerableTime = 0;
