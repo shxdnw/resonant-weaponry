@@ -52,6 +52,11 @@ public final class RuptureAbility implements LegendaryAbility {
 
     private static void erupt(ServerPlayer owner, ServerLevel level, Vec3 start, Vec3 end,
                               ResonantWeaponryConfig.LegendaryWeapons.Voidfang config) {
+        if (owner.isRemoved() || level.getServer() == null
+                || level.getServer().getPlayerList().getPlayer(owner.getUUID()) == null) {
+            DebugLog.log("Rupture: owner gone, skipped");
+            return;
+        }
         List<Vec3> points = new ArrayList<>();
         Vec3 path = end.subtract(start);
         double length = path.length();

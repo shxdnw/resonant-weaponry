@@ -25,7 +25,9 @@ public final class Scheduler {
             Task task = iterator.next();
             if (now >= task.resolveTick) {
                 iterator.remove();
-                task.action.accept(task.level);
+                if (task.level.getServer() != null) {
+                    task.action.accept(task.level);
+                }
             }
         }
     }

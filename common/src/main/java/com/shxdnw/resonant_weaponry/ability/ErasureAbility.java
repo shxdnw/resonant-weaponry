@@ -2,7 +2,6 @@ package com.shxdnw.resonant_weaponry.ability;
 
 import com.shxdnw.resonant_weaponry.DebugLog;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
-import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,14 +19,14 @@ public final class ErasureAbility implements LegendaryAbility {
     public void activate(AbilityContext context) {
         ServerPlayer player = context.wielder();
         ServerLevel level = player.level();
-        LegendaryWeapon.Activation activation = context.weapon().activation();
+        int channelTicks = ResonantWeaponryConfig.legendaryWeapons.theRealKnife.channelTicks;
         Vec3 origin = player.position();
 
-        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, activation.channelTicks(), 4));
+        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, channelTicks, 4));
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0f, 2.0f);
         DebugLog.log("Erasure: channel started for {}", player.getName().getString());
 
-        Channels.start(player, activation.channelTicks(),
+        Channels.start(player, channelTicks,
                 elapsed -> {
                     if (elapsed == 40 || elapsed == 80) {
                         level.playSound(null, origin.x, origin.y, origin.z, SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0f, 1.6f);

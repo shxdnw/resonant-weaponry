@@ -14,4 +14,9 @@ public final class TheFirstMovePassive implements Passive {
         }
         return amount;
     }
+
+    @Override
+    public void onHit(ServerPlayer player, LivingEntity target) {
+        FirstHitTracker.markHit(player, target);
+    }
 }

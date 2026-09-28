@@ -5,30 +5,38 @@ import com.shxdnw.resonant_weaponry.ability.passive.Passive;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeaponItem;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
 public final class CombatHooks {
+    private static boolean dispatching;
+
     private CombatHooks() {
     }
 
     public static float modifyDamage(LivingEntity target, DamageSource source, float amount) {
-        ServerPlayer player = attacker(source);
-        if (player == null) {
+        ServerPlayer player = meleeAttacker(source);
+        if (player == null || dispatching) {
             return amount;
         }
-        float result = amount;
-        for (Passive passive : passives(player)) {
-            result = passive.modifyDamage(player, target, result);
+        dispatching = true;
+        try {
+            float result = amount;
+            for (Passive passive : passives(player)) {
+                result = passive.modifyDamage(player, target, result);
+            }
+            return result;
+        } finally {
+            dispatching = false;
         }
-        return result;
     }
 
     public static float armorPenetration(LivingEntity target, DamageSource source, float damage, float afterArmor) {
-        ServerPlayer player = attacker(source);
-        if (player == null) {
+        ServerPlayer player = meleeAttacker(source);
+        if (player == null || dispatching) {
             return afterArmor;
         }
         float result = afterArmor;
@@ -38,20 +46,38 @@ public final class CombatHooks {
         return result;
     }
 
-    public static void onHit(ServerPlayer player, LivingEntity target) {
-        for (Passive passive : passives(player)) {
-            passive.onHit(player, target);
+    public static void onHit(DamageSource source, LivingEntity target) {
+        ServerPlayer player = meleeAttacker(source);
+        if (player == null || dispatching) {
+            return;
+        }
+        dispatching = true;
+        try {
+            for (Passive passive : passives(player)) {
+                passive.onHit(player, target);
+            }
+        } finally {
+            dispatching = false;
         }
     }
 
-    public static void onKill(ServerPlayer player, LivingEntity target) {
-        for (Passive passive : passives(player)) {
-            passive.onKill(player, target);
+    public static void onKill(DamageSource source, LivingEntity target) {
+        ServerPlayer player = meleeAttacker(source);
+        if (player == null || dispatching) {
+            return;
+        }
+        dispatching = true;
+        try {
+            for (Passive passive : passives(player)) {
+                passive.onKill(player, target);
+            }
+        } finally {
+            dispatching = false;
         }
     }
 
     public static boolean nullifyIncoming(LivingEntity victim, DamageSource source) {
-        if (!(victim instanceof ServerPlayer player)) {
+        if (dispatching || !(victim instanceof ServerPlayer player)) {
             return false;
         }
         for (Passive passive : passives(player)) {
@@ -69,7 +95,12 @@ public final class CombatHooks {
                 : List.of();
     }
 
-    private static ServerPlayer attacker(DamageSource source) {
-        return source.getEntity() instanceof ServerPlayer player ? player : null;
+    private static ServerPlayer meleeAttacker(DamageSource source) {
+        if (!source.is(DamageTypes.PLAYER_ATTACK)) {
+            return null;
+        }
+        return source.getEntity() instanceof ServerPlayer player && source.getDirectEntity() == player
+                ? player
+                : null;
     }
 }

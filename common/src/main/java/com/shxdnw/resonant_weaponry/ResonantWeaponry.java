@@ -90,9 +90,8 @@ public final class ResonantWeaponry {
             if (entity instanceof ServerPlayer dying) {
                 clearState(dying);
             }
-            if (source.getEntity() instanceof ServerPlayer killer) {
-                CombatHooks.onKill(killer, entity);
-            }
+            FirstHitTracker.onTargetDeath(entity);
+            CombatHooks.onKill(source, entity);
             return EventResult.pass();
         });
 

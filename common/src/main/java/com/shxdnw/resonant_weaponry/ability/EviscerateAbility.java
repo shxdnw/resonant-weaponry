@@ -21,6 +21,7 @@ public final class EviscerateAbility implements LegendaryAbility {
         ServerLevel level = player.level();
         ResonantWeaponryConfig.LegendaryWeapons.BloodScourge config =
                 ResonantWeaponryConfig.legendaryWeapons.bloodScourge;
+        float slashDamage = config.attackDamage * config.slashDamageMult;
         Vec3 look = player.getLookAngle();
         Vec3 center = player.position().add(look.scale(config.slashReach / 2.0));
 
@@ -35,7 +36,7 @@ public final class EviscerateAbility implements LegendaryAbility {
                 continue;
             }
             entity.invulnerableTime = 0;
-            entity.hurtServer(level, level.damageSources().playerAttack(player), config.slashDamage);
+            entity.hurtServer(level, level.damageSources().playerAttack(player), slashDamage);
             Vec3 pull = player.position().subtract(entity.position()).normalize().scale(0.8);
             entity.push(pull.x, 0.2, pull.z);
             entity.addEffect(new MobEffectInstance(MobEffects.WITHER, config.witherDuration, 2));

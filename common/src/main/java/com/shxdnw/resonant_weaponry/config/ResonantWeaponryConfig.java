@@ -191,7 +191,6 @@ public final class ResonantWeaponryConfig {
         }
     }
 
-    @RequiresAction(action = Action.RESTART)
     public static final class LegendaryWeapons extends Config {
         public LegendaryWeapons() {
             super(id("legendary_weapons"));
@@ -219,20 +218,30 @@ public final class ResonantWeaponryConfig {
         }
 
         public static class Stats extends ConfigSection {
+            @RequiresAction(action = Action.RESTART)
             public float attackDamage;
+            @RequiresAction(action = Action.RESTART)
             public float atkspeed;
+            @RequiresAction(action = Action.RESTART)
             public int durability;
+            public int cooldownTicks;
+            public int chargeTicks;
+            public int channelTicks;
 
-            Stats(float attackDamage, float atkspeed, int durability) {
+            Stats(float attackDamage, float atkspeed, int durability,
+                  int cooldownTicks, int chargeTicks, int channelTicks) {
                 this.attackDamage = attackDamage;
                 this.atkspeed = atkspeed;
                 this.durability = durability;
+                this.cooldownTicks = cooldownTicks;
+                this.chargeTicks = chargeTicks;
+                this.channelTicks = channelTicks;
             }
         }
 
         public static final class TheRealKnife extends Stats {
             public TheRealKnife() {
-                super(5.0f, -1.0f, 3249);
+                super(5.0f, -1.0f, 3249, 600, 20, 100);
             }
 
             public float armorPen = 0.40f;
@@ -251,7 +260,7 @@ public final class ResonantWeaponryConfig {
 
         public static final class GildedArbiter extends Stats {
             public GildedArbiter() {
-                super(11.5f, -2.8f, 3249);
+                super(11.5f, -2.8f, 3249, 1200, 0, 0);
             }
 
             public int defenseSlow = 200;
@@ -265,7 +274,7 @@ public final class ResonantWeaponryConfig {
 
         public static final class GaleCutter extends Stats {
             public GaleCutter() {
-                super(9.0f, -2.6f, 3249);
+                super(9.0f, -2.6f, 3249, 400, 0, 0);
             }
 
             public float cycloneRadius = 7.0f;
@@ -279,11 +288,11 @@ public final class ResonantWeaponryConfig {
 
         public static final class BloodScourge extends Stats {
             public BloodScourge() {
-                super(6.0f, -1.2f, 3249);
+                super(6.0f, -1.2f, 3249, 300, 0, 0);
             }
 
             public float slashReach = 5.0f;
-            public float slashDamage = 3.0f;
+            public float slashDamageMult = 1.5f;
             public int witherDuration = 60;
             public int blindnessDuration = 60;
             public int slowDuration = 100;
@@ -296,7 +305,7 @@ public final class ResonantWeaponryConfig {
 
         public static final class Voidfang extends Stats {
             public Voidfang() {
-                super(5.5f, -1.4f, 3249);
+                super(5.5f, -1.4f, 3249, 300, 0, 0);
             }
 
             public int teleportDistance = 5;
@@ -310,7 +319,7 @@ public final class ResonantWeaponryConfig {
 
         public static final class YashasEdge extends Stats {
             public YashasEdge() {
-                super(6.0f, -1.6f, 3249);
+                super(6.0f, -1.6f, 3249, 400, 0, 0);
             }
 
             public int dashTicks = 20;
@@ -329,7 +338,7 @@ public final class ResonantWeaponryConfig {
 
         public static final class Calamity extends Stats {
             public Calamity() {
-                super(12.0f, -3.0f, 3249);
+                super(12.0f, -3.0f, 3249, 600, 30, 0);
             }
 
             public float leapVelocityUp = 1.5f;

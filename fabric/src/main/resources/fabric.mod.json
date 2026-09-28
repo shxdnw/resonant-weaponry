@@ -16,6 +16,9 @@
     "main": [
       "com.shxdnw.resonant_weaponry.fabric.ResonantWeaponryFabric"
     ],
+    "client": [
+      "com.shxdnw.resonant_weaponry.fabric.ResonantWeaponryFabricClient"
+    ],
     "fabric-datagen": [
       "com.shxdnw.resonant_weaponry.fabric.datagen.ResonantWeaponryDatagen"
     ]

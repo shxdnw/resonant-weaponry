@@ -3,6 +3,7 @@ package com.shxdnw.resonant_weaponry.content;
 import com.shxdnw.resonant_weaponry.ability.AbilityContext;
 import com.shxdnw.resonant_weaponry.ability.LegendaryAbilities;
 import com.shxdnw.resonant_weaponry.ability.LegendaryAbility;
+import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -54,7 +55,7 @@ public class LegendaryWeaponItem extends Item {
                 tooltip.accept(Component.literal(line).withStyle(ChatFormatting.DARK_PURPLE));
             }
             tooltip.accept(Component.empty());
-            tooltip.accept(Component.literal("Cooldown: " + definition.activation().cooldownTicks() / 20 + "s")
+            tooltip.accept(Component.literal("Cooldown: " + stats().cooldownTicks / 20 + "s")
                     .withStyle(ChatFormatting.BLUE));
 
             for (LegendaryWeapon.Passive passive : definition.text().passives()) {
@@ -91,7 +92,7 @@ public class LegendaryWeaponItem extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack, LivingEntity entity) {
-        return definition.activation().style() == ActivationStyle.INSTANT ? 0 : definition.activation().chargeTicks();
+        return definition.activation().style() == ActivationStyle.INSTANT ? 0 : stats().chargeTicks;
     }
 
     @Override
@@ -118,6 +119,10 @@ public class LegendaryWeaponItem extends Item {
             return;
         }
         ability.activate(new AbilityContext(serverPlayer, stack, hand, definition));
-        serverPlayer.getCooldowns().addCooldown(stack, definition.activation().cooldownTicks());
+        serverPlayer.getCooldowns().addCooldown(stack, stats().cooldownTicks);
+    }
+
+    private ResonantWeaponryConfig.LegendaryWeapons.Stats stats() {
+        return ResonantWeaponryConfig.legendaryWeapons.stats(definition.id());
     }
 }

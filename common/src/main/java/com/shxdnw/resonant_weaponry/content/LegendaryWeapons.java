@@ -7,7 +7,7 @@ import java.util.List;
 public final class LegendaryWeapons {
     public static final List<LegendaryWeapon> ALL = List.of(
             new LegendaryWeapon("the_real_knife", "The Real Knife", WeaponType.DAGGER, ChatFormatting.RED,
-                    LegendaryWeapon.Activation.channeled(600, 20, 100),
+                    LegendaryWeapon.Activation.channeled(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "A simple kitchen knife.",
@@ -22,7 +22,7 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Relentless",
                                             "40% armor penetration when below 40% health.")))),
             new LegendaryWeapon("gilded_arbiter", "Gilded Arbiter", WeaponType.HALBERD, ChatFormatting.GOLD,
-                    LegendaryWeapon.Activation.instant(1200),
+                    LegendaryWeapon.Activation.instant(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "A heavy ceremonial polearm forged",
@@ -36,7 +36,7 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Counterweight",
                                             "Hitting while moving backward applies\nSlowness I for 5 seconds.")))),
             new LegendaryWeapon("gale_cutter", "Gale Cutter", WeaponType.SCYTHE, ChatFormatting.GREEN,
-                    LegendaryWeapon.Activation.instant(400),
+                    LegendaryWeapon.Activation.instant(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "A scythe that commands the storm.",
@@ -51,7 +51,7 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Aftercut",
                                             "Every 3rd hit applies an aftercut.\nAfter 4s, deals magic damage\nand knocks the target back.")))),
             new LegendaryWeapon("blood_scourge", "Blood Scourge", WeaponType.SICKLE, ChatFormatting.DARK_RED,
-                    LegendaryWeapon.Activation.instant(300),
+                    LegendaryWeapon.Activation.instant(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "An ancient cultist's tool repurposed for war."),
@@ -63,7 +63,7 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Hemorrhagic Shock",
                                             "Hitting a debuffed enemy triggers a\nblood explosion dealing AoE damage.\n20s cooldown.")))),
             new LegendaryWeapon("voidfang", "Voidfang", WeaponType.RAPIER, ChatFormatting.DARK_PURPLE,
-                    LegendaryWeapon.Activation.instant(300),
+                    LegendaryWeapon.Activation.instant(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "A rapier that doesn't reflect light.",
@@ -76,7 +76,7 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Event Horizon",
                                             "20% chance to nullify incoming damage\nwhile you have Voidscar stacks.")))),
             new LegendaryWeapon("yashas_edge", "Yasha's Edge", WeaponType.KATANA, ChatFormatting.DARK_AQUA,
-                    LegendaryWeapon.Activation.instant(400),
+                    LegendaryWeapon.Activation.instant(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "A swift Nether blade.",
@@ -91,7 +91,7 @@ public final class LegendaryWeapons {
                                             "Hitting an enemy applies Slowness for 3s.\n8s cooldown per weapon.")))),
 
             new LegendaryWeapon("calamity", "Calamity", WeaponType.GREATSWORD, ChatFormatting.DARK_RED,
-                    LegendaryWeapon.Activation.charged(600, 30),
+                    LegendaryWeapon.Activation.charged(),
                     new LegendaryWeapon.Text(
                             List.of(
                                     "Forged in the deepest basalt deltas,",

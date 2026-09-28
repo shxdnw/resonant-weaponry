@@ -23,17 +23,17 @@ public record LegendaryWeapon(
     public record Passive(String name, String description) {
     }
 
-    public record Activation(ActivationStyle style, int cooldownTicks, int chargeTicks, int channelTicks) {
-        public static Activation instant(int cooldownTicks) {
-            return new Activation(ActivationStyle.INSTANT, cooldownTicks, 0, 0);
+    public record Activation(ActivationStyle style) {
+        public static Activation instant() {
+            return new Activation(ActivationStyle.INSTANT);
         }
 
-        public static Activation charged(int cooldownTicks, int chargeTicks) {
-            return new Activation(ActivationStyle.CHARGED, cooldownTicks, chargeTicks, 0);
+        public static Activation charged() {
+            return new Activation(ActivationStyle.CHARGED);
         }
 
-        public static Activation channeled(int cooldownTicks, int chargeTicks, int channelTicks) {
-            return new Activation(ActivationStyle.CHANNELED, cooldownTicks, chargeTicks, channelTicks);
+        public static Activation channeled() {
+            return new Activation(ActivationStyle.CHANNELED);
         }
     }
 }
