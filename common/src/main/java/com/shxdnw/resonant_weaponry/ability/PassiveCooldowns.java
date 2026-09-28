@@ -26,4 +26,8 @@ public final class PassiveCooldowns {
     public static void forget(Player player) {
         LAST_USED.remove(player.getUUID());
     }
+
+    public static void clearAll() {
+        LAST_USED.clear();
+    }
 }

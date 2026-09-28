@@ -25,6 +25,10 @@ public final class Channels {
         CHANNELS.removeIf(channel -> channel.playerId.equals(player.getUUID()));
     }
 
+    public static void clearAll() {
+        CHANNELS.clear();
+    }
+
     public static boolean isChanneling(ServerPlayer player) {
         return CHANNELS.stream().anyMatch(channel -> channel.playerId.equals(player.getUUID()));
     }

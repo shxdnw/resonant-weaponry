@@ -47,4 +47,9 @@ public final class MovementTracker {
         LAST_POSITION.remove(player.getUUID());
         LAST_MOTION.remove(player.getUUID());
     }
+
+    public static void clearAll() {
+        LAST_POSITION.clear();
+        LAST_MOTION.clear();
+    }
 }

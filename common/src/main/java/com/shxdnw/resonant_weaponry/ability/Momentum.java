@@ -70,6 +70,12 @@ public final class Momentum {
         LAST_DECAY.remove(player.getUUID());
     }
 
+    public static void clearAll() {
+        STACKS.clear();
+        LAST_HIT.clear();
+        LAST_DECAY.clear();
+    }
+
     private static void apply(ServerPlayer player) {
         AttributeInstance attribute = player.getAttribute(Attributes.ATTACK_SPEED);
         if (attribute == null) {

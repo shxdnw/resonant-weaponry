@@ -31,4 +31,9 @@ public final class FirstHitTracker {
     public static void clear(Player player) {
         LAST_HITS.remove(player.getUUID());
     }
+
+    public static void clearAll() {
+        LAST_HITS.clear();
+        tick = 0;
+    }
 }

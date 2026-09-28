@@ -88,7 +88,22 @@ public final class LegendaryWeapons {
                                     new LegendaryWeapon.Passive("Momentum",
                                             "Each hit grants +5% attack speed (max 40%).\nDecays after 5s without hitting."),
                                     new LegendaryWeapon.Passive("Anchor",
-                                            "Hitting an enemy applies Slowness for 3s.\n8s cooldown per weapon."))))
+                                            "Hitting an enemy applies Slowness for 3s.\n8s cooldown per weapon.")))),
+
+            new LegendaryWeapon("calamity", "Calamity", WeaponType.GREATSWORD, ChatFormatting.DARK_RED,
+                    LegendaryWeapon.Activation.charged(600, 30),
+                    new LegendaryWeapon.Text(
+                            List.of(
+                                    "Forged in the deepest basalt deltas,",
+                                    "its weight alone fractures the netherrack below.",
+                                    "It won't stop until the Overworld burns."),
+                            "Cataclysm",
+                            "Leap high into the air and crash down,\ncreating a 8-block fissure dealing\nheavy damage to all nearby enemies.",
+                            List.of(
+                                    new LegendaryWeapon.Passive("Anti Tank",
+                                            "30% armor penetration.\nDamages the target's armor on hit."),
+                                    new LegendaryWeapon.Passive("Ruination",
+                                            "Hitting an enemy below 15% HP instantly kills them\nand creates an AoE effect.\n10s cooldown. Does not work on bosses."))))
     );
 
     private LegendaryWeapons() {

@@ -16,7 +16,6 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -49,15 +48,16 @@ public final class YashaDash {
     public static void tick(MinecraftServer server) {
         ResonantWeaponryConfig.LegendaryWeapons.YashasEdge config =
                 ResonantWeaponryConfig.legendaryWeapons.yashasEdge;
-        Iterator<Map.Entry<UUID, Dash>> iterator = DASHES.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<UUID, Dash> entry = iterator.next();
-            ServerPlayer player = server.getPlayerList().getPlayer(entry.getKey());
-            if (player == null) {
-                iterator.remove();
+        for (UUID id : List.copyOf(DASHES.keySet())) {
+            Dash dash = DASHES.get(id);
+            if (dash == null) {
                 continue;
             }
-            Dash dash = entry.getValue();
+            ServerPlayer player = server.getPlayerList().getPlayer(id);
+            if (player == null) {
+                DASHES.remove(id);
+                continue;
+            }
             ServerLevel level = player.level();
 
             player.setDeltaMovement(dash.direction.scale(DASH_SPEED));
@@ -83,7 +83,7 @@ public final class YashaDash {
             dash.ticksLeft--;
             if (dash.ticksLeft <= 0) {
                 player.setNoGravity(false);
-                iterator.remove();
+                DASHES.remove(id);
                 scheduleAftercut(player, dash, config);
             }
         }
@@ -93,6 +93,10 @@ public final class YashaDash {
         if (DASHES.remove(player.getUUID()) != null) {
             player.setNoGravity(false);
         }
+    }
+
+    public static void clearAll() {
+        DASHES.clear();
     }
 
     private static void scheduleAftercut(ServerPlayer owner, Dash dash,

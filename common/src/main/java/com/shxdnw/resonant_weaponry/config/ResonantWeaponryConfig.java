@@ -203,6 +203,7 @@ public final class ResonantWeaponryConfig {
         public BloodScourge bloodScourge = new BloodScourge();
         public Voidfang voidfang = new Voidfang();
         public YashasEdge yashasEdge = new YashasEdge();
+        public Calamity calamity = new Calamity();
 
         public Stats stats(String id) {
             return switch (id) {
@@ -212,6 +213,7 @@ public final class ResonantWeaponryConfig {
                 case "blood_scourge" -> bloodScourge;
                 case "voidfang" -> voidfang;
                 case "yashas_edge" -> yashasEdge;
+                case "calamity" -> calamity;
                 default -> throw new IllegalStateException("Unknown legendary weapon: " + id);
             };
         }
@@ -323,6 +325,22 @@ public final class ResonantWeaponryConfig {
             public int anchorCooldown = 160;
             public int anchorDuration = 60;
             public int anchorLevel = 0;
+        }
+
+        public static final class Calamity extends Stats {
+            public Calamity() {
+                super(12.0f, -3.0f, 3249);
+            }
+
+            public float leapVelocityUp = 1.5f;
+            public float leapVelocityForward = 1.2f;
+            public float impactRadius = 8.0f;
+            public float impactDamage = 25.0f;
+            public float armorPenetration = 0.30f;
+            public float ruinationHpThreshold = 0.15f;
+            public float ruinationAoEDamage = 15.0f;
+            public float ruinationAoERadius = 6.0f;
+            public int ruinationCooldown = 200;
         }
     }
 

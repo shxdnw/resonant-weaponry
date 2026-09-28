@@ -13,4 +13,8 @@ public final class ServerClock {
     public static long now() {
         return tick;
     }
+
+    public static void reset() {
+        tick = 0;
+    }
 }

@@ -111,7 +111,16 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("stackBonus", "Momentum Per Stack"),
             entry("anchorCooldown", "Anchor Cooldown"),
             entry("anchorDuration", "Anchor Duration"),
-            entry("anchorLevel", "Anchor Level"));
+            entry("anchorLevel", "Anchor Level"),
+            entry("calamity", "Calamity"),
+            entry("leapVelocityUp", "Leap Upward Velocity"),
+            entry("leapVelocityForward", "Leap Forward Velocity"),
+            entry("impactRadius", "Impact Radius"),
+            entry("impactDamage", "Impact Damage"),
+            entry("ruinationHpThreshold", "Ruination HP Threshold"),
+            entry("ruinationAoEDamage", "Ruination Damage"),
+            entry("ruinationAoERadius", "Ruination Radius"),
+            entry("ruinationCooldown", "Ruination Cooldown"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -178,7 +187,15 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("anchorCooldown", "Ticks between Anchor procs per weapon."),
             entry("anchorDuration", "Slowness duration applied by Anchor."),
             entry("anchorLevel", "Slowness amplifier (0 = level I)."),
-            entry("legendary_weapons.yashasEdge.maxStacks", "Momentum stacks needed to reach the attack-speed cap."));
+            entry("legendary_weapons.yashasEdge.maxStacks", "Momentum stacks needed to reach the attack-speed cap."),
+            entry("leapVelocityUp", "Upward velocity applied at the start of the Cataclysm leap."),
+            entry("leapVelocityForward", "Forward velocity applied at the start of the Cataclysm leap."),
+            entry("impactRadius", "Horizontal radius of the Cataclysm slam."),
+            entry("impactDamage", "Slam damage at the centre, falling off with distance."),
+            entry("ruinationHpThreshold", "Health fraction below which Ruination can execute (0-1)."),
+            entry("ruinationAoEDamage", "Explosion damage dealt by the Ruination blast."),
+            entry("ruinationAoERadius", "Radius of the Ruination blast."),
+            entry("ruinationCooldown", "Ticks between Ruination executions per weapon."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

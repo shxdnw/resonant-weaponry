@@ -37,6 +37,10 @@ public final class ErasureFx {
         }
     }
 
+    public static void clearAll() {
+        EFFECTS.clear();
+    }
+
     private static final class Effect {
         private final ServerLevel level;
         private final Vec3 origin;

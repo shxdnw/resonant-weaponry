@@ -62,4 +62,8 @@ public final class Aftercuts {
     public static void forget(Player player) {
         STACKS.remove(player.getUUID());
     }
+
+    public static void clearAll() {
+        STACKS.clear();
+    }
 }
