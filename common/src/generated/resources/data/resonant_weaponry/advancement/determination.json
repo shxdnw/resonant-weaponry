@@ -1,0 +1,33 @@
+{
+  "parent": "resonant_weaponry:root",
+  "criteria": {
+    "has_weapon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resonant_weaponry:the_real_knife"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.resonant_weaponry.determination.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "resonant_weaponry:the_real_knife"
+    },
+    "title": {
+      "translate": "advancements.resonant_weaponry.determination.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -11,5 +11,6 @@ public final class ResonantWeaponryDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(WeaponLanguageProvider::new);
         pack.addProvider(WeaponRecipeProvider::new);
         pack.addProvider(WeaponAttributesProvider::new);
+        pack.addProvider(WeaponAdvancementProvider::new);
     }
 }

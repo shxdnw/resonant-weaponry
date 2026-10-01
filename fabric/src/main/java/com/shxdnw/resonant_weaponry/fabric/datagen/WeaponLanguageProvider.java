@@ -2,6 +2,7 @@ package com.shxdnw.resonant_weaponry.fabric.datagen;
 
 import com.shxdnw.resonant_weaponry.ResonantWeaponry;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.LegendaryAdvancements;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeapon;
 import com.shxdnw.resonant_weaponry.content.LegendaryWeapons;
 import com.shxdnw.resonant_weaponry.content.MaterialTier;
@@ -217,6 +218,12 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
         }
         for (LegendaryWeapon definition : LegendaryWeapons.ALL) {
             builder.add(definition.nameKey(), definition.displayName());
+        }
+        builder.add(LegendaryAdvancements.titleKey(LegendaryAdvancements.ROOT), LegendaryAdvancements.ROOT.title());
+        builder.add(LegendaryAdvancements.descriptionKey(LegendaryAdvancements.ROOT), LegendaryAdvancements.ROOT.description());
+        for (LegendaryAdvancements.Entry entry : LegendaryAdvancements.ALL) {
+            builder.add(LegendaryAdvancements.titleKey(entry), entry.title());
+            builder.add(LegendaryAdvancements.descriptionKey(entry), entry.description());
         }
 
         config(builder, ResonantWeaponryConfig.General.class, "general");

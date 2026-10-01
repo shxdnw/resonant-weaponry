@@ -1,0 +1,33 @@
+{
+  "parent": "resonant_weaponry:root",
+  "criteria": {
+    "has_weapon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "resonant_weaponry:calamity"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.resonant_weaponry.cataclysm.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "resonant_weaponry:calamity"
+    },
+    "title": {
+      "translate": "advancements.resonant_weaponry.cataclysm.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

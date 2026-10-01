@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "has_weapon": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#resonant_weaponry:weapons"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "background": "minecraft:block/chiseled_tuff",
+    "description": {
+      "translate": "advancements.resonant_weaponry.root.description"
+    },
+    "icon": {
+      "id": "resonant_weaponry:gale_cutter"
+    },
+    "title": {
+      "translate": "advancements.resonant_weaponry.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_weapon"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
