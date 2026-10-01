@@ -248,6 +248,7 @@ public final class ResonantWeaponryConfig {
             public float relentlessBelow = 0.40f;
             public float explosionRadius = 25f;
             public float explosionDamage = 30f;
+            public float explosionArmorPen = 0.5f;
             public int teleportDistance = 30;
             public int downReach = 20;
             public int upReach = 50;

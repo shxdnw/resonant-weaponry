@@ -204,6 +204,8 @@
   "resonant_weaponry.legendary_weapons.theRealKnife.downReach.desc": "How far below the origin the Erasure blast reaches.",
   "resonant_weaponry.legendary_weapons.theRealKnife.durability": "Durability",
   "resonant_weaponry.legendary_weapons.theRealKnife.durability.desc": "Max durability for this weapon.",
+  "resonant_weaponry.legendary_weapons.theRealKnife.explosionArmorPen": "Explosion Armor Piercing",
+  "resonant_weaponry.legendary_weapons.theRealKnife.explosionArmorPen.desc": "Fraction of the target's armour ignored by the Erasure blast (0-1).",
   "resonant_weaponry.legendary_weapons.theRealKnife.explosionDamage": "Explosion Damage",
   "resonant_weaponry.legendary_weapons.theRealKnife.explosionDamage.desc": "Damage at the centre of the Erasure blast.",
   "resonant_weaponry.legendary_weapons.theRealKnife.explosionRadius": "Explosion Radius",

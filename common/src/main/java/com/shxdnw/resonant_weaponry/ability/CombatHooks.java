@@ -6,6 +6,7 @@ import com.shxdnw.resonant_weaponry.content.LegendaryWeaponItem;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
@@ -37,14 +38,17 @@ public final class CombatHooks {
 
     public static float armorPenetration(LivingEntity target, DamageSource source, float damage, float afterArmor) {
         ServerPlayer player = meleeAttacker(source);
-        if (player == null || dispatching) {
-            return afterArmor;
+        if (player != null && !dispatching) {
+            float result = afterArmor;
+            for (Passive passive : passives(player)) {
+                result = passive.modifyArmorPenetration(player, target, damage, result);
+            }
+            return result;
         }
-        float result = afterArmor;
-        for (Passive passive : passives(player)) {
-            result = passive.modifyArmorPenetration(player, target, damage, result);
-        }
-        return result;
+        // non-melee pierce, e.g. the Erasure blast
+        Entity attacker = source.getEntity();
+        float pierce = attacker == null ? 0.0f : ArmorPierce.fraction(attacker);
+        return pierce > 0.0f ? afterArmor + (damage - afterArmor) * pierce : afterArmor;
     }
 
     public static void onHit(DamageSource source, LivingEntity target) {

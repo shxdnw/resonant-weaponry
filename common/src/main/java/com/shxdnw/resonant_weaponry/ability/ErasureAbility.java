@@ -68,24 +68,29 @@ public final class ErasureAbility implements LegendaryAbility {
                 origin.x - config.explosionRadius, origin.y - config.downReach, origin.z - config.explosionRadius,
                 origin.x + config.explosionRadius, origin.y + config.upReach, origin.z + config.explosionRadius);
         DamageSource source = level.damageSources().explosion(player, player);
+        ArmorPierce.set(player, config.explosionArmorPen);
 
-        for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
-            if (!Targeting.canAffect(player, entity)) {
-                continue;
+        try {
+            for (LivingEntity entity : level.getEntitiesOfClass(LivingEntity.class, box)) {
+                if (!Targeting.canAffect(player, entity)) {
+                    continue;
+                }
+                double dx = entity.getX() - origin.x;
+                double dz = entity.getZ() - origin.z;
+                double distance = Math.sqrt(dx * dx + dz * dz);
+                if (distance > config.explosionRadius) {
+                    continue;
+                }
+                float falloff = (float) (1.0 - distance / config.explosionRadius);
+                entity.invulnerableTime = 0;
+                entity.hurtServer(level, source, config.explosionDamage);
+                if (distance > 0.001) {
+                    entity.push(dx / distance * 3.0 * falloff, 0.5 * falloff, dz / distance * 3.0 * falloff);
+                    entity.hurtMarked = true;
+                }
             }
-            double dx = entity.getX() - origin.x;
-            double dz = entity.getZ() - origin.z;
-            double distance = Math.sqrt(dx * dx + dz * dz);
-            if (distance > config.explosionRadius) {
-                continue;
-            }
-            float falloff = (float) (1.0 - distance / config.explosionRadius);
-            entity.invulnerableTime = 0;
-            entity.hurtServer(level, source, config.explosionDamage * falloff);
-            if (distance > 0.001) {
-                entity.push(dx / distance * 3.0 * falloff, 0.5 * falloff, dz / distance * 3.0 * falloff);
-                entity.hurtMarked = true;
-            }
+        } finally {
+            ArmorPierce.clear(player);
         }
 
         double angle = level.getRandom().nextDouble() * Math.PI * 2.0;

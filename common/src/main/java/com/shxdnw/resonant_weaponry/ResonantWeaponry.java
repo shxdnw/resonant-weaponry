@@ -1,6 +1,7 @@
 package com.shxdnw.resonant_weaponry;
 
 import com.shxdnw.resonant_weaponry.ability.Aftercuts;
+import com.shxdnw.resonant_weaponry.ability.ArmorPierce;
 import com.shxdnw.resonant_weaponry.ability.CataclysmAbility;
 import com.shxdnw.resonant_weaponry.ability.CataclysmLeap;
 import com.shxdnw.resonant_weaponry.ability.Channels;
@@ -123,6 +124,7 @@ public final class ResonantWeaponry {
         }
         Scheduler.clear();
         ServerClock.reset();
+        ArmorPierce.clearAll();
         Channels.clearAll();
         ErasureFx.clearAll();
         Aftercuts.clearAll();
