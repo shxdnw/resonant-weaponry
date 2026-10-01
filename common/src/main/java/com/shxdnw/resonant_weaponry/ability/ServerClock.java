@@ -1,5 +1,6 @@
 package com.shxdnw.resonant_weaponry.ability;
 
+// shared "now" in ticks
 public final class ServerClock {
     private static long tick;
 

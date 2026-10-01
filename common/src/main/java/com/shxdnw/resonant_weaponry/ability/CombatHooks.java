@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 public final class CombatHooks {
+    // stops passives looping on their own damage
     private static boolean dispatching;
 
     private CombatHooks() {
@@ -95,6 +96,7 @@ public final class CombatHooks {
                 : List.of();
     }
 
+    // dont touch this
     private static ServerPlayer meleeAttacker(DamageSource source) {
         if (!source.is(DamageTypes.PLAYER_ATTACK)) {
             return null;

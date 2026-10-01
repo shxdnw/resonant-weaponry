@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
+// delayed effects, ticked each server tick
 public final class Scheduler {
     private static final List<Task> TASKS = new ArrayList<>();
 
@@ -25,6 +26,7 @@ public final class Scheduler {
             Task task = iterator.next();
             if (now >= task.resolveTick) {
                 iterator.remove();
+                // skip if the server is going down
                 if (task.level.getServer() != null) {
                     task.action.accept(task.level);
                 }

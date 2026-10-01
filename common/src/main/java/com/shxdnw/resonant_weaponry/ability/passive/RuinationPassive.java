@@ -19,6 +19,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public final class RuinationPassive implements Passive {
+    // shared convention tag, add bosses there
     private static final TagKey<EntityType<?>> BOSSES =
             TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "bosses"));
 

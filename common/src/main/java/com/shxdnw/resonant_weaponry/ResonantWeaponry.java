@@ -98,6 +98,7 @@ public final class ResonantWeaponry {
         ModItems.register();
     }
 
+    // dimension change keeps cooldowns
     private static void clearTransient(ServerPlayer player) {
         FirstHitTracker.clear(player);
         Channels.clear(player);
@@ -109,11 +110,13 @@ public final class ResonantWeaponry {
         CataclysmLeap.cancel(player);
     }
 
+    // death/logout wipes everything
     private static void clearState(ServerPlayer player) {
         clearTransient(player);
         PassiveCooldowns.forget(player);
     }
 
+    // or static maps leak between worlds
     private static void clearServerState(MinecraftServer server) {
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
             clearState(player);

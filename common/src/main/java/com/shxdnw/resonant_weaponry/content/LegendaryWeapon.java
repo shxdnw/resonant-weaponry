@@ -23,6 +23,7 @@ public record LegendaryWeapon(
     public record Passive(String name, String description) {
     }
 
+    // timings come from config, only the style lives here
     public record Activation(ActivationStyle style) {
         public static Activation instant() {
             return new Activation(ActivationStyle.INSTANT);

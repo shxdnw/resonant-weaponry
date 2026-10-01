@@ -24,12 +24,14 @@ public final class FirstHitTracker {
         }
     }
 
+    // just checks, hit gets saved in markhit
     public static boolean isFirstHit(Player attacker, LivingEntity target) {
         int window = ResonantWeaponryConfig.legendaryWeapons.theRealKnife.firstHitWindow;
         Long last = LAST_HITS.getOrDefault(attacker.getUUID(), Map.of()).get(target.getUUID());
         return last == null || tick - last > window;
     }
 
+    // only counts once the hit lands
     public static void markHit(Player attacker, LivingEntity target) {
         LAST_HITS.computeIfAbsent(attacker.getUUID(), key -> new HashMap<>()).put(target.getUUID(), tick);
         if (entries() > MAX_ENTRIES) {

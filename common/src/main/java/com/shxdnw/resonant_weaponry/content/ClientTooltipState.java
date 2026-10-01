@@ -3,6 +3,7 @@ package com.shxdnw.resonant_weaponry.content;
 import java.util.function.BooleanSupplier;
 
 public final class ClientTooltipState {
+    // set by the loader client entrypoint
     private static BooleanSupplier shiftDown = () -> false;
 
     private ClientTooltipState() {

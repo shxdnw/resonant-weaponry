@@ -76,6 +76,7 @@ public final class Momentum {
         LAST_DECAY.clear();
     }
 
+    // transient, so we remove it ourselves on cleanup
     private static void apply(ServerPlayer player) {
         AttributeInstance attribute = player.getAttribute(Attributes.ATTACK_SPEED);
         if (attribute == null) {

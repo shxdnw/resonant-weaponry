@@ -36,6 +36,7 @@ public final class CataclysmLeap {
         player.setDeltaMovement(direction.x * config.leapVelocityForward, config.leapVelocityUp,
                 direction.z * config.leapVelocityForward);
         player.hurtMarked = true;
+        // keep gravity, just skip fall damage
         player.resetFallDistance();
         LEAPS.put(player.getUUID(), ServerClock.now());
         DebugLog.log("Cataclysm: leap started for {}", player.getName().getString());
@@ -45,6 +46,7 @@ public final class CataclysmLeap {
         ResonantWeaponryConfig.LegendaryWeapons.Calamity config =
                 ResonantWeaponryConfig.legendaryWeapons.calamity;
         long now = ServerClock.now();
+        // snapshot, the slam can mutate this
         for (UUID id : List.copyOf(LEAPS.keySet())) {
             Long started = LEAPS.get(id);
             if (started == null) {

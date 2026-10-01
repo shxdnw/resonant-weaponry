@@ -48,6 +48,7 @@ public final class YashaDash {
     public static void tick(MinecraftServer server) {
         ResonantWeaponryConfig.LegendaryWeapons.YashasEdge config =
                 ResonantWeaponryConfig.legendaryWeapons.yashasEdge;
+        // snapshot, damage below can mutate this
         for (UUID id : List.copyOf(DASHES.keySet())) {
             Dash dash = DASHES.get(id);
             if (dash == null) {

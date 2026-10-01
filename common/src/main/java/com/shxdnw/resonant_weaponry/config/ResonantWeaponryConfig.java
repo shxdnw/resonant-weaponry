@@ -218,12 +218,14 @@ public final class ResonantWeaponryConfig {
         }
 
         public static class Stats extends ConfigSection {
+            // baked at registration, needs a restart
             @RequiresAction(action = Action.RESTART)
             public float attackDamage;
             @RequiresAction(action = Action.RESTART)
             public float atkspeed;
             @RequiresAction(action = Action.RESTART)
             public int durability;
+            // live, no restart
             public int cooldownTicks;
             public int chargeTicks;
             public int channelTicks;
