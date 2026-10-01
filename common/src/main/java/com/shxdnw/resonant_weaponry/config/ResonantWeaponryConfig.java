@@ -152,11 +152,8 @@ public final class ResonantWeaponryConfig {
         }
 
         public static final class Rapier extends TypeSection {
-            public float armorPenetration;
-
             public Rapier() {
                 super(1.0f, -1.4f, 0.80f);
-                this.armorPenetration = 0.20f;
             }
         }
 

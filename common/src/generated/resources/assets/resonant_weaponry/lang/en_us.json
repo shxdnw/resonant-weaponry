@@ -334,8 +334,6 @@
   "resonant_weaponry.weapon_types.longsword.duramulti": "Durability Multiplier",
   "resonant_weaponry.weapon_types.longsword.duramulti.desc": "Multiplier applied to the material's durability.",
   "resonant_weaponry.weapon_types.rapier": "Rapier",
-  "resonant_weaponry.weapon_types.rapier.armorPenetration": "Armour Penetration",
-  "resonant_weaponry.weapon_types.rapier.armorPenetration.desc": "Fraction of the target's armour ignored (0-1).",
   "resonant_weaponry.weapon_types.rapier.atkspeed": "Attack Speed",
   "resonant_weaponry.weapon_types.rapier.atkspeed.desc": "Modifier added to the baseline of 4.0 attacks per second.",
   "resonant_weaponry.weapon_types.rapier.basedmg": "Base Damage",
