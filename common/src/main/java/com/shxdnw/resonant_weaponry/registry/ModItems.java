@@ -22,6 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public final class ModItems {
@@ -61,6 +62,10 @@ public final class ModItems {
     public static void register() {
         ITEMS.register();
         TABS.register();
+    }
+
+    public static List<Item> legendaryItems() {
+        return LEGENDARIES.values().stream().map(RegistrySupplier::get).toList();
     }
 
     private static Item createWeapon(WeaponDefinition definition) {

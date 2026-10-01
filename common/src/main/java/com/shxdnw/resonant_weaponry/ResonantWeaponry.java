@@ -38,6 +38,7 @@ import com.shxdnw.resonant_weaponry.ability.passive.TailwindPassive;
 import com.shxdnw.resonant_weaponry.ability.passive.TheFirstMovePassive;
 import com.shxdnw.resonant_weaponry.ability.passive.VoidscarPassive;
 import com.shxdnw.resonant_weaponry.config.ResonantWeaponryConfig;
+import com.shxdnw.resonant_weaponry.content.LootInjection;
 import com.shxdnw.resonant_weaponry.registry.ModItems;
 import dev.architectury.event.EventResult;
 import dev.architectury.event.events.common.EntityEvent;
@@ -72,6 +73,8 @@ public final class ResonantWeaponry {
         LegendaryPassives.register("voidfang", new VoidscarPassive(), new EventHorizonPassive());
         LegendaryPassives.register("yashas_edge", new MomentumPassive(), new AnchorPassive());
         LegendaryPassives.register("calamity", new AntiTankPassive(), new RuinationPassive());
+
+        LootInjection.register();
 
         TickEvent.SERVER_POST.register(server -> {
             ServerClock.tick();

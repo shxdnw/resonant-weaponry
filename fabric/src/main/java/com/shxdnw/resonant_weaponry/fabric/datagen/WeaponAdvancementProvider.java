@@ -35,7 +35,7 @@ public final class WeaponAdvancementProvider extends FabricAdvancementProvider {
         Identifier rootId = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, LegendaryAdvancements.ROOT.file());
         Item rootIcon = item(items, LegendaryAdvancements.ROOT.weaponId());
 
-        Advancement.Builder.advancement()
+        AdvancementHolder root = Advancement.Builder.advancement()
                 .display(rootIcon,
                         Component.translatable(LegendaryAdvancements.titleKey(LegendaryAdvancements.ROOT)),
                         Component.translatable(LegendaryAdvancements.descriptionKey(LegendaryAdvancements.ROOT)),
@@ -49,7 +49,7 @@ public final class WeaponAdvancementProvider extends FabricAdvancementProvider {
             Item icon = item(items, entry.weaponId());
             Identifier id = Identifier.fromNamespaceAndPath(ResonantWeaponry.MOD_ID, entry.file());
             Advancement.Builder.advancement()
-                    .parent(rootId)
+                    .parent(root)
                     .display(icon,
                             Component.translatable(LegendaryAdvancements.titleKey(entry)),
                             Component.translatable(LegendaryAdvancements.descriptionKey(entry)),
