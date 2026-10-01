@@ -30,6 +30,7 @@ allprojects {
         maven { url "https://maven.fzzyhmstrs.me/" }
         maven { url "https://maven.terraformersmc.com/releases/" }
         maven { url "https://thedarkcolour.github.io/KotlinForForge/" }
+        maven { url "https://api.modrinth.com/maven" }
         mavenCentral()
     }
 
@@ -41,4 +42,41 @@ allprojects {
     java {
         withSourcesJar()
     }
+}
+
+tasks.register("runFabricClient") {
+    group = "resonant weaponry"
+    description = "Run the Fabric client."
+    dependsOn(":fabric:runClient")
+}
+
+tasks.register("runNeoForgeClient") {
+    group = "resonant weaponry"
+    description = "Run the NeoForge client."
+    dependsOn(":neoforge:runClient")
+}
+
+tasks.register("runFabricServer") {
+    group = "resonant weaponry"
+    description = "Run the Fabric server."
+    dependsOn(":fabric:runServer")
+}
+
+tasks.register("runNeoForgeServer") {
+    group = "resonant weaponry"
+    description = "Run the NeoForge server."
+    dependsOn(":neoforge:runServer")
+}
+
+tasks.register("runDatagen") {
+    group = "resonant weaponry"
+    description = "Generate tags, recipes, lang and Better Combat presets into common/src/generated/resources."
+    dependsOn(":fabric:runDatagen")
+}
+
+tasks.register("genAndBuild") {
+    group = "resonant weaponry"
+    description = "Run datagen, then build every module."
+    dependsOn(":fabric:runDatagen")
+    finalizedBy("build")
 }

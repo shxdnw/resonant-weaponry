@@ -24,6 +24,12 @@ dependencies {
     api "dev.architectury:architectury-neoforge:${rootProject.architectury_version}"
     api "me.fzzyhmstrs:fzzy_config:${rootProject.fzzy_config_version}+neoforge"
 
+    if (rootProject.findProperty("bettercombat_enabled") != "false") {
+        runtimeOnly "maven.modrinth:better-combat:${rootProject.bettercombat_version}-neoforge"
+        runtimeOnly "maven.modrinth:cloth-config:${rootProject.cloth_config_version}+neoforge"
+        runtimeOnly "maven.modrinth:player-animation-library:${rootProject.player_animation_library_version}"
+    }
+
     common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive false }
 }

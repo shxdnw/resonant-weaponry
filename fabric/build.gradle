@@ -35,6 +35,12 @@ dependencies {
     api "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
     api "me.fzzyhmstrs:fzzy_config:${rootProject.fzzy_config_version}"
 
+    if (rootProject.findProperty("bettercombat_enabled") != "false") {
+        runtimeOnly "maven.modrinth:better-combat:${rootProject.bettercombat_version}-fabric"
+        runtimeOnly "maven.modrinth:cloth-config:${rootProject.cloth_config_version}+fabric"
+        runtimeOnly "maven.modrinth:player-animation-library:${rootProject.player_animation_library_version}"
+    }
+
     common(project(path: ":common")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }
