@@ -24,6 +24,7 @@ public final class EventHorizonPassive implements Passive {
         if (player.getRandom().nextDouble() >= config.nullifyChance) {
             return false;
         }
+        VoidStacks.decrement(player);
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 1.0f, 0.6f);
         player.level().sendParticles(new DustParticleOptions(0x440044, 2.0f),

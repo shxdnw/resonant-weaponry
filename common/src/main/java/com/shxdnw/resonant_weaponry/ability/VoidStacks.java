@@ -24,6 +24,15 @@ public final class VoidStacks {
         STACKS.put(player.getUUID(), 0);
     }
 
+    public static void decrement(Player player) {
+        int current = STACKS.getOrDefault(player.getUUID(), 0);
+        if (current > 1) {
+            STACKS.put(player.getUUID(), current - 1);
+        } else {
+            STACKS.remove(player.getUUID());
+        }
+    }
+
     public static void forget(Player player) {
         STACKS.remove(player.getUUID());
     }
