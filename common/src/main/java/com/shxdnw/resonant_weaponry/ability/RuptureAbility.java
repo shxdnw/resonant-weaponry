@@ -71,6 +71,7 @@ public final class RuptureAbility implements LegendaryAbility {
         }
 
         Set<UUID> knocked = new HashSet<>();
+        Set<UUID> damaged = new HashSet<>();
         var random = level.getRandom();
         for (Vec3 point : points) {
             level.playSound(null, point.x, point.y, point.z, SoundEvents.GENERIC_EXPLODE.value(),
@@ -86,6 +87,9 @@ public final class RuptureAbility implements LegendaryAbility {
                 double dz = entity.getZ() - point.z;
                 double distance = Math.sqrt(dx * dx + dz * dz);
                 if (distance > config.trailRadius) {
+                    continue;
+                }
+                if (!damaged.add(entity.getUUID())) {
                     continue;
                 }
                 float falloff = (float) (1.0 - distance / config.trailRadius);

@@ -4,7 +4,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -34,18 +33,16 @@ public final class Channels {
     }
 
     public static void tick(MinecraftServer server) {
-        Iterator<Channel> iterator = CHANNELS.iterator();
-        while (iterator.hasNext()) {
-            Channel channel = iterator.next();
+        for (Channel channel : List.copyOf(CHANNELS)) {
             ServerPlayer player = server.getPlayerList().getPlayer(channel.playerId);
             if (player == null) {
-                iterator.remove();
+                CHANNELS.remove(channel);
                 continue;
             }
             channel.onTick.accept(channel.elapsed);
             channel.elapsed++;
             if (channel.elapsed >= channel.durationTicks) {
-                iterator.remove();
+                CHANNELS.remove(channel);
                 channel.onComplete.accept(player);
             }
         }

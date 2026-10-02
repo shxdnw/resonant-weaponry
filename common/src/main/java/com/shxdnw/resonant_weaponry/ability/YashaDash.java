@@ -37,11 +37,12 @@ public final class YashaDash {
         }
         direction = direction.normalize();
 
+        boolean previousNoGravity = player.isNoGravity();
         player.setNoGravity(true);
         player.resetFallDistance();
         player.setDeltaMovement(direction.scale(DASH_SPEED));
         player.hurtMarked = true;
-        DASHES.put(player.getUUID(), new Dash(direction, config.dashTicks));
+        DASHES.put(player.getUUID(), new Dash(direction, config.dashTicks, previousNoGravity));
         DebugLog.log("Yasha's Vengeance: dash started for {}", player.getName().getString());
     }
 
@@ -83,7 +84,7 @@ public final class YashaDash {
 
             dash.ticksLeft--;
             if (dash.ticksLeft <= 0) {
-                player.setNoGravity(false);
+                player.setNoGravity(dash.previousNoGravity);
                 DASHES.remove(id);
                 scheduleAftercut(player, dash, config);
             }
@@ -91,8 +92,9 @@ public final class YashaDash {
     }
 
     public static void cancel(ServerPlayer player) {
-        if (DASHES.remove(player.getUUID()) != null) {
-            player.setNoGravity(false);
+        Dash dash = DASHES.remove(player.getUUID());
+        if (dash != null) {
+            player.setNoGravity(dash.previousNoGravity);
         }
     }
 
@@ -111,12 +113,14 @@ public final class YashaDash {
                 DebugLog.log("Yasha aftercut: owner gone, skipped");
                 return;
             }
+            Set<UUID> damaged = new HashSet<>();
             for (Vec3 point : path) {
                 AABB area = new AABB(point.x - 5.0, point.y - 2.0, point.z - 5.0,
                         point.x + 5.0, point.y + 3.0, point.z + 5.0);
                 for (LivingEntity entity : resolved.getEntitiesOfClass(LivingEntity.class, area)) {
                     if (!Targeting.canAffect(owner, entity)
-                            || (!config.aftercutRehit && hitDuringDash.contains(entity.getUUID()))) {
+                            || (!config.aftercutRehit && hitDuringDash.contains(entity.getUUID()))
+                            || !damaged.add(entity.getUUID())) {
                         continue;
                     }
                     entity.invulnerableTime = 0;
@@ -139,11 +143,13 @@ public final class YashaDash {
         private final Vec3 direction;
         private final List<Vec3> path = new ArrayList<>();
         private final Set<UUID> hit = new HashSet<>();
+        private final boolean previousNoGravity;
         private int ticksLeft;
 
-        private Dash(Vec3 direction, int ticksLeft) {
+        private Dash(Vec3 direction, int ticksLeft, boolean previousNoGravity) {
             this.direction = direction;
             this.ticksLeft = ticksLeft;
+            this.previousNoGravity = previousNoGravity;
         }
     }
 }

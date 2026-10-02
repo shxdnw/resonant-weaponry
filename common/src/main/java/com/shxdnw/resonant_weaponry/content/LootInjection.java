@@ -15,13 +15,13 @@ public final class LootInjection {
 
     @SuppressWarnings("removal")
     public static void register() {
-        LootEvent.MODIFY_LOOT_TABLE.register((key, context, replaced) -> {
+        LootEvent.MODIFY_LOOT_TABLE.register((key, context, builtin) -> {
             String path = key.identifier().getPath();
             if (!path.startsWith("chests/")) {
                 return;
             }
             for (String blacklisted : ResonantWeaponryConfig.general.lootTableBlacklist) {
-                if (path.contains(blacklisted)) {
+                if (!blacklisted.isEmpty() && path.contains(blacklisted)) {
                     return;
                 }
             }

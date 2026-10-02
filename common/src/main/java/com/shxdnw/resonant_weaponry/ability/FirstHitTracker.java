@@ -33,6 +33,9 @@ public final class FirstHitTracker {
 
     // only counts once the hit lands
     public static void markHit(Player attacker, LivingEntity target) {
+        if (target.isRemoved() || !target.isAlive()) {
+            return;
+        }
         LAST_HITS.computeIfAbsent(attacker.getUUID(), key -> new HashMap<>()).put(target.getUUID(), tick);
         if (entries() > MAX_ENTRIES) {
             sweep();

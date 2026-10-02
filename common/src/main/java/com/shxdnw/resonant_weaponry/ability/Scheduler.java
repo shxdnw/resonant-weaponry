@@ -4,7 +4,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -21,11 +20,9 @@ public final class Scheduler {
 
     public static void tick(MinecraftServer server) {
         long now = ServerClock.now();
-        Iterator<Task> iterator = TASKS.iterator();
-        while (iterator.hasNext()) {
-            Task task = iterator.next();
+        for (Task task : List.copyOf(TASKS)) {
             if (now >= task.resolveTick) {
-                iterator.remove();
+                TASKS.remove(task);
                 // skip if the server is going down
                 if (task.level.getServer() != null) {
                     task.action.accept(task.level);

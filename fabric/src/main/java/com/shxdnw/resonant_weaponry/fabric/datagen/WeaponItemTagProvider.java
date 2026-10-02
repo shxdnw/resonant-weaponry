@@ -32,6 +32,7 @@ public final class WeaponItemTagProvider extends FabricTagsProvider.ItemTagsProv
             weapons.add(itemKey(definition.id()));
         }
 
+        builder(ItemTags.SWORDS).addTag(ModTags.WEAPONS);
         builder(ItemTags.MELEE_WEAPON_ENCHANTABLE).addTag(ModTags.WEAPONS);
         builder(ItemTags.DURABILITY_ENCHANTABLE).addTag(ModTags.WEAPONS);
         builder(ItemTags.SWEEPING_ENCHANTABLE).addTag(ModTags.WEAPONS);

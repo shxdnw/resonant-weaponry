@@ -10,6 +10,7 @@ import me.fzzyhmstrs.fzzy_config.api.RegisterType;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import net.minecraft.resources.Identifier;
 
 import java.util.List;
@@ -63,6 +64,7 @@ public final class ResonantWeaponryConfig {
         }
 
         public static class TierSection extends ConfigSection {
+            @ValidatedInt.Restrict(min = 1, max = 100000)
             public int durability;
             public float attackDamageBonus;
             public int enchantability;
@@ -130,6 +132,7 @@ public final class ResonantWeaponryConfig {
         public static class TypeSection extends ConfigSection {
             public float basedmg;
             public float atkspeed;
+            @ValidatedFloat.Restrict(min = 0.01f, max = 100f)
             public float duramulti;
 
             TypeSection(float basedmg, float atkspeed, float duramulti) {
@@ -221,6 +224,7 @@ public final class ResonantWeaponryConfig {
             @RequiresAction(action = Action.RESTART)
             public float atkspeed;
             @RequiresAction(action = Action.RESTART)
+            @ValidatedInt.Restrict(min = 1, max = 100000)
             public int durability;
             // live, no restart
             public int cooldownTicks;
@@ -246,12 +250,14 @@ public final class ResonantWeaponryConfig {
             public float armorPen = 0.40f;
             public int firstHitWindow = 100;
             public float relentlessBelow = 0.40f;
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float explosionRadius = 25f;
             public float explosionDamage = 30f;
             public float explosionArmorPen = 0.5f;
             public int teleportDistance = 30;
             public int downReach = 20;
             public int upReach = 50;
+            @ValidatedInt.Restrict(min = 1, max = 10000)
             public int riseDuration = 20;
             public int persistDuration = 100;
             public int columnheight = 100;
@@ -277,9 +283,9 @@ public final class ResonantWeaponryConfig {
                 super(9.0f, -2.6f, 3249, 400, 0, 0);
             }
 
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float cycloneRadius = 7.0f;
-            public float cycloneDamage = 10.0f;
-            public int tailwindSpeedDuration = 100;
+            public float cycloneDamage = 10.0f;            public int tailwindSpeedDuration = 100;
             public int tailwindCooldown = 200;
             public int aftercutMaxStacks = 3;
             public int aftercutDelay = 80;
@@ -299,6 +305,7 @@ public final class ResonantWeaponryConfig {
             public float sanguineHealPct = 0.5f;
             public int sanguineCooldown = 600;
             public float hemoAoEDamage = 12.0f;
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float hemoAoERadius = 5.0f;
             public int hemoCooldown = 400;
         }
@@ -310,6 +317,7 @@ public final class ResonantWeaponryConfig {
 
             public int teleportDistance = 5;
             public float trailDamage = 18.0f;
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float trailRadius = 4.0f;
             public int trailDelay = 10;
             public int maxStacks = 4;
@@ -343,11 +351,13 @@ public final class ResonantWeaponryConfig {
 
             public float leapVelocityUp = 1.5f;
             public float leapVelocityForward = 1.2f;
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float impactRadius = 8.0f;
             public float impactDamage = 25.0f;
             public float armorPenetration = 0.30f;
             public float ruinationHpThreshold = 0.15f;
             public float ruinationAoEDamage = 15.0f;
+            @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float ruinationAoERadius = 6.0f;
             public int ruinationCooldown = 200;
         }

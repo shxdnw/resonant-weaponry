@@ -13,13 +13,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 // dont touch this
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
+    // nullifies instead of zeroing
+    @Inject(method = "hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z", at = @At("HEAD"), cancellable = true)
+    private void resonantWeaponry$nullify(ServerLevel level, DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (CombatHooks.nullifyIncoming((LivingEntity) (Object) this, source)) {
+            cir.setReturnValue(false);
+        }
+    }
+
     @ModifyVariable(method = "hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z", at = @At("HEAD"), argsOnly = true)
     private float resonantWeaponry$modifyDamage(float amount, ServerLevel level, DamageSource source) {
-        LivingEntity target = (LivingEntity) (Object) this;
-        if (CombatHooks.nullifyIncoming(target, source)) {
-            return 0.0f;
-        }
-        return CombatHooks.modifyDamage(target, source, amount);
+        return CombatHooks.modifyDamage((LivingEntity) (Object) this, source, amount);
     }
 
     @Inject(method = "hurtServer(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/damagesource/DamageSource;F)Z", at = @At("RETURN"))
