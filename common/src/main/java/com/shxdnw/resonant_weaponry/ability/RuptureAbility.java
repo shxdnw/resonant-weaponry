@@ -54,6 +54,7 @@ public final class RuptureAbility implements LegendaryAbility {
                               ResonantWeaponryConfig.LegendaryWeapons.Voidfang config) {
         // owner might be gone by now
         if (owner.isRemoved() || level.getServer() == null
+                || owner.level() != level
                 || level.getServer().getPlayerList().getPlayer(owner.getUUID()) == null) {
             DebugLog.log("Rupture: owner gone, skipped");
             return;

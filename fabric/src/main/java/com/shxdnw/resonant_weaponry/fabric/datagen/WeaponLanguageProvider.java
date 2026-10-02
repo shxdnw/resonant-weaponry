@@ -125,7 +125,8 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("ruinationHpThreshold", "Ruination HP Threshold"),
             entry("ruinationAoEDamage", "Ruination Damage"),
             entry("ruinationAoERadius", "Ruination Radius"),
-            entry("ruinationCooldown", "Ruination Cooldown"));
+            entry("ruinationCooldown", "Ruination Cooldown"),
+            entry("legendary_weapons.voidfang.teleportDistance", "Surge Distance"));
 
     private static final Map<String, String> DESCRIPTIONS = Map.ofEntries(
             entry("debugLogging", "Emit extra diagnostic logs for combat and ability events."),
@@ -204,7 +205,8 @@ public final class WeaponLanguageProvider extends FabricLanguageProvider {
             entry("ruinationHpThreshold", "Health fraction below which Ruination can execute (0-1)."),
             entry("ruinationAoEDamage", "Explosion damage dealt by the Ruination blast."),
             entry("ruinationAoERadius", "Radius of the Ruination blast."),
-            entry("ruinationCooldown", "Ticks between Ruination executions per weapon."));
+            entry("ruinationCooldown", "Ticks between Ruination executions per weapon."),
+            entry("legendary_weapons.voidfang.teleportDistance", "Distance the wielder surges forward."));
 
     public WeaponLanguageProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);

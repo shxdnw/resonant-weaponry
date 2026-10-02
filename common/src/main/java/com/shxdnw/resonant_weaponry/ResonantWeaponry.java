@@ -112,6 +112,7 @@ public final class ResonantWeaponry {
         YashaDash.cancel(player);
         Momentum.forget(player);
         CataclysmLeap.cancel(player);
+        CombatHooks.forget(player);
     }
 
     // death/logout wipes everything
@@ -128,6 +129,7 @@ public final class ResonantWeaponry {
         Scheduler.clear();
         ServerClock.reset();
         ArmorPierce.clearAll();
+        CombatHooks.clearAll();
         Channels.clearAll();
         ErasureFx.clearAll();
         Aftercuts.clearAll();

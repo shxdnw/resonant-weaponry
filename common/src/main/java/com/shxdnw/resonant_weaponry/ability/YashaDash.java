@@ -29,6 +29,7 @@ public final class YashaDash {
     }
 
     public static void start(ServerPlayer player) {
+        cancel(player);
         ResonantWeaponryConfig.LegendaryWeapons.YashasEdge config =
                 ResonantWeaponryConfig.legendaryWeapons.yashasEdge;
         Vec3 direction = new Vec3(player.getLookAngle().x, 0.0, player.getLookAngle().z);
@@ -109,6 +110,7 @@ public final class YashaDash {
         ServerLevel level = owner.level();
         Scheduler.schedule(level, config.aftercutDelay, resolved -> {
             if (owner.isRemoved() || resolved.getServer() == null
+                    || owner.level() != resolved
                     || resolved.getServer().getPlayerList().getPlayer(owner.getUUID()) == null) {
                 DebugLog.log("Yasha aftercut: owner gone, skipped");
                 return;

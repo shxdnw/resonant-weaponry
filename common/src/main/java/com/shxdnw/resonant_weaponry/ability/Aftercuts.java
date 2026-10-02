@@ -40,6 +40,7 @@ public final class Aftercuts {
                                 ResonantWeaponryConfig.LegendaryWeapons.GaleCutter config) {
         // owner might be gone by now
         if (owner.isRemoved() || level.getServer() == null
+                || owner.level() != level
                 || level.getServer().getPlayerList().getPlayer(owner.getUUID()) == null) {
             DebugLog.log("Aftercut: owner gone, skipped");
             return;

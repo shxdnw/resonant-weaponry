@@ -10,11 +10,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public final class CombatHooks {
     // stops passives looping on their own damage
     private static boolean dispatching;
+    private static final Map<UUID, Long> LAST_ON_HIT_TICK = new HashMap<>();
+    private static final Map<UUID, Long> LAST_ON_KILL_TICK = new HashMap<>();
 
     private CombatHooks() {
     }
@@ -56,6 +61,15 @@ public final class CombatHooks {
         if (player == null || dispatching) {
             return;
         }
+        // mark every landed hit; the debounce below only gates the passives themselves
+        FirstHitTracker.markHit(player, target);
+        // one proc per swing: a sweep hits several entities in the same tick
+        long now = player.level().getGameTime();
+        Long last = LAST_ON_HIT_TICK.get(player.getUUID());
+        if (last != null && last == now) {
+            return;
+        }
+        LAST_ON_HIT_TICK.put(player.getUUID(), now);
         dispatching = true;
         try {
             for (Passive passive : passives(player)) {
@@ -71,6 +85,12 @@ public final class CombatHooks {
         if (player == null || dispatching) {
             return;
         }
+        long now = player.level().getGameTime();
+        Long last = LAST_ON_KILL_TICK.get(player.getUUID());
+        if (last != null && last == now) {
+            return;
+        }
+        LAST_ON_KILL_TICK.put(player.getUUID(), now);
         dispatching = true;
         try {
             for (Passive passive : passives(player)) {
@@ -82,7 +102,7 @@ public final class CombatHooks {
     }
 
     public static boolean nullifyIncoming(LivingEntity victim, DamageSource source) {
-        if (dispatching || !(victim instanceof ServerPlayer player)) {
+        if (!(victim instanceof ServerPlayer player)) {
             return false;
         }
         for (Passive passive : passives(player)) {
@@ -91,6 +111,17 @@ public final class CombatHooks {
             }
         }
         return false;
+    }
+
+    public static void clearAll() {
+        LAST_ON_HIT_TICK.clear();
+        LAST_ON_KILL_TICK.clear();
+        dispatching = false;
+    }
+
+    public static void forget(ServerPlayer player) {
+        LAST_ON_HIT_TICK.remove(player.getUUID());
+        LAST_ON_KILL_TICK.remove(player.getUUID());
     }
 
     private static List<Passive> passives(ServerPlayer player) {

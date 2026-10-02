@@ -21,7 +21,7 @@ public final class LootInjection {
                 return;
             }
             for (String blacklisted : ResonantWeaponryConfig.general.lootTableBlacklist) {
-                if (!blacklisted.isEmpty() && path.contains(blacklisted)) {
+                if (blacklisted != null && !blacklisted.isEmpty() && path.contains(blacklisted)) {
                     return;
                 }
             }

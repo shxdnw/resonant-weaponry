@@ -7,11 +7,15 @@ import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 
 public final class EventHorizonPassive implements Passive {
     @Override
     public boolean nullifyIncoming(ServerPlayer player, DamageSource source) {
+        if (source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            return false;
+        }
         if (VoidStacks.get(player) < 1) {
             return false;
         }

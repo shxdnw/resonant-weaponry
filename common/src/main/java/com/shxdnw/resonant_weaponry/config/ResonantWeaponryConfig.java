@@ -227,8 +227,11 @@ public final class ResonantWeaponryConfig {
             @ValidatedInt.Restrict(min = 1, max = 100000)
             public int durability;
             // live, no restart
+            @ValidatedInt.Restrict(min = 0, max = 100000)
             public int cooldownTicks;
+            @ValidatedInt.Restrict(min = 0, max = 100000)
             public int chargeTicks;
+            @ValidatedInt.Restrict(min = 0, max = 100000)
             public int channelTicks;
 
             Stats(float attackDamage, float atkspeed, int durability,
@@ -247,12 +250,16 @@ public final class ResonantWeaponryConfig {
                 super(5.0f, -1.0f, 3249, 600, 20, 100);
             }
 
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float armorPen = 0.40f;
+            @ValidatedInt.Restrict(min = 1, max = 100000)
             public int firstHitWindow = 100;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float relentlessBelow = 0.40f;
             @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float explosionRadius = 25f;
             public float explosionDamage = 30f;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float explosionArmorPen = 0.5f;
             public int teleportDistance = 30;
             public int downReach = 20;
@@ -285,8 +292,10 @@ public final class ResonantWeaponryConfig {
 
             @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float cycloneRadius = 7.0f;
-            public float cycloneDamage = 10.0f;            public int tailwindSpeedDuration = 100;
+            public float cycloneDamage = 10.0f;
+            public int tailwindSpeedDuration = 100;
             public int tailwindCooldown = 200;
+            @ValidatedInt.Restrict(min = 1, max = 1000)
             public int aftercutMaxStacks = 3;
             public int aftercutDelay = 80;
             public float aftercutDamage = 6.0f;
@@ -298,10 +307,12 @@ public final class ResonantWeaponryConfig {
             }
 
             public float slashReach = 5.0f;
+            @ValidatedFloat.Restrict(min = 0f, max = 100f)
             public float slashDamageMult = 1.5f;
             public int witherDuration = 60;
             public int blindnessDuration = 60;
             public int slowDuration = 100;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float sanguineHealPct = 0.5f;
             public int sanguineCooldown = 600;
             public float hemoAoEDamage = 12.0f;
@@ -320,8 +331,10 @@ public final class ResonantWeaponryConfig {
             @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float trailRadius = 4.0f;
             public int trailDelay = 10;
+            @ValidatedInt.Restrict(min = 1, max = 1000)
             public int maxStacks = 4;
             public float trueDamage = 8.0f;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float nullifyChance = 0.20f;
         }
 
@@ -335,6 +348,7 @@ public final class ResonantWeaponryConfig {
             public float aftercutDamage = 8.0f;
             public int aftercutDelay = 20;
             public boolean aftercutRehit = true;
+            @ValidatedInt.Restrict(min = 1, max = 1000)
             public int maxStacks = 8;
             public int decayAfter = 100;
             public int decayEvery = 20;
@@ -354,7 +368,9 @@ public final class ResonantWeaponryConfig {
             @ValidatedFloat.Restrict(min = 1f, max = 100f)
             public float impactRadius = 8.0f;
             public float impactDamage = 25.0f;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float armorPenetration = 0.30f;
+            @ValidatedFloat.Restrict(min = 0f, max = 1f)
             public float ruinationHpThreshold = 0.15f;
             public float ruinationAoEDamage = 15.0f;
             @ValidatedFloat.Restrict(min = 1f, max = 100f)
