@@ -3,11 +3,12 @@
   "id": "resonant_weaponry",
   "version": "${version}",
   "name": "Resonant Weaponry",
-  "description": ".",
+  "description": "A minecraft weapon mod.",
   "authors": [
     "shxdnw"
   ],
   "license": "LGPL-3.0",
+  "icon": "assets/resonant_weaponry/icon.png",
   "environment": "*",
   "mixins": [
     "resonant_weaponry.mixins.json"
@@ -29,5 +30,8 @@
     "java": ">=25",
     "architectury": ">=20.0.12",
     "fzzy_config": ">=0.7.6"
+  },
+  "recommends": {
+    "bettercombat": ">=3.2.2"
   }
 }

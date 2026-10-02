@@ -10,8 +10,9 @@ modId = "resonant_weaponry"
 version = "${version}"
 displayName = "Resonant Weaponry"
 authors = "shxdnw"
+logoFile = "assets/resonant_weaponry/icon.png"
 description = '''
-.
+A minecraft weapon mod.
 '''
 
 [[dependencies.resonant_weaponry]]
@@ -39,5 +40,12 @@ side = "BOTH"
 modId = "fzzy_config"
 type = "required"
 versionRange = "[0.7.6,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.resonant_weaponry]]
+modId = "bettercombat"
+type = "optional"
+versionRange = "[3.2.2,)"
 ordering = "AFTER"
 side = "BOTH"
