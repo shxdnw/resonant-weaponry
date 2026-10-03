@@ -69,6 +69,7 @@ public class LegendaryWeaponItem extends Item {
         } else {
             tooltip.accept(Component.literal("Hold [SHIFT] for advanced information")
                     .withStyle(ChatFormatting.GREEN));
+            tooltip.accept(Component.empty());
         }
     }
 

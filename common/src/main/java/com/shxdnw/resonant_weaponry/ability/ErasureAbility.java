@@ -8,8 +8,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -22,18 +20,25 @@ public final class ErasureAbility implements LegendaryAbility {
         int channelTicks = ResonantWeaponryConfig.legendaryWeapons.theRealKnife.channelTicks;
         Vec3 origin = player.position();
 
-        player.addEffect(new MobEffectInstance(MobEffects.SLOWNESS, channelTicks, 4));
         level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0f, 2.0f);
         DebugLog.log("Erasure: channel started for {}", player.getName().getString());
+        ChannelRoot.apply(player);
 
         Channels.start(player, channelTicks,
                 elapsed -> {
                     if (elapsed == 40 || elapsed == 80) {
                         level.playSound(null, origin.x, origin.y, origin.z, SoundEvents.BEACON_ACTIVATE, SoundSource.PLAYERS, 1.0f, 1.6f);
                     }
+                    root(player);
                     spawnPlate(level, origin);
                 },
                 self -> detonate(self, level, origin));
+    }
+
+    private static void root(ServerPlayer player) {
+        player.setDeltaMovement(Vec3.ZERO);
+        player.resetFallDistance();
+        player.hurtMarked = true;
     }
 
     private static void spawnPlate(ServerLevel level, Vec3 origin) {
@@ -62,6 +67,7 @@ public final class ErasureAbility implements LegendaryAbility {
     private static void detonate(ServerPlayer player, ServerLevel level, Vec3 origin) {
         ResonantWeaponryConfig.LegendaryWeapons.TheRealKnife config =
                 ResonantWeaponryConfig.legendaryWeapons.theRealKnife;
+        ChannelRoot.clear(player);
         level.playSound(null, origin.x, origin.y, origin.z, SoundEvents.GENERIC_EXPLODE, SoundSource.PLAYERS, 2.0f, 0.7f);
 
         AABB box = new AABB(

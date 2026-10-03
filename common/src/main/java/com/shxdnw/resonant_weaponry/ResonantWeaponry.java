@@ -4,6 +4,7 @@ import com.shxdnw.resonant_weaponry.ability.Aftercuts;
 import com.shxdnw.resonant_weaponry.ability.ArmorPierce;
 import com.shxdnw.resonant_weaponry.ability.CataclysmAbility;
 import com.shxdnw.resonant_weaponry.ability.CataclysmLeap;
+import com.shxdnw.resonant_weaponry.ability.ChannelRoot;
 import com.shxdnw.resonant_weaponry.ability.Channels;
 import com.shxdnw.resonant_weaponry.ability.CombatHooks;
 import com.shxdnw.resonant_weaponry.ability.CycloneAbility;
@@ -113,6 +114,7 @@ public final class ResonantWeaponry {
         Momentum.forget(player);
         CataclysmLeap.cancel(player);
         CombatHooks.forget(player);
+        ChannelRoot.clear(player);
     }
 
     // death/logout wipes everything
@@ -130,6 +132,7 @@ public final class ResonantWeaponry {
         ServerClock.reset();
         ArmorPierce.clearAll();
         CombatHooks.clearAll();
+        ChannelRoot.clearAll();
         Channels.clearAll();
         ErasureFx.clearAll();
         Aftercuts.clearAll();

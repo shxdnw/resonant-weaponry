@@ -3,7 +3,8 @@
   "package": "com.shxdnw.resonant_weaponry.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1
