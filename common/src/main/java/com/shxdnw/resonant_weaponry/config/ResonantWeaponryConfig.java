@@ -11,6 +11,7 @@ import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedNumber;
 import net.minecraft.resources.Identifier;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public final class ResonantWeaponryConfig {
         }
 
         public boolean debugLogging = false;
-        @ValidatedFloat.Restrict(min = 0f, max = 1f)
+        @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
         public float legendaryLootChance = 0.01f;
         public List<String> lootTableBlacklist = List.of("village");
         public boolean friendlyFire = false;
@@ -64,7 +65,7 @@ public final class ResonantWeaponryConfig {
         }
 
         public static class TierSection extends ConfigSection {
-            @ValidatedInt.Restrict(min = 1, max = 100000)
+            @ValidatedInt.Restrict(min = 1, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int durability;
             public float attackDamageBonus;
             public int enchantability;
@@ -132,7 +133,7 @@ public final class ResonantWeaponryConfig {
         public static class TypeSection extends ConfigSection {
             public float basedmg;
             public float atkspeed;
-            @ValidatedFloat.Restrict(min = 0.01f, max = 100f)
+            @ValidatedFloat.Restrict(min = 0.01f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float duramulti;
 
             TypeSection(float basedmg, float atkspeed, float duramulti) {
@@ -224,14 +225,14 @@ public final class ResonantWeaponryConfig {
             @RequiresAction(action = Action.RESTART)
             public float atkspeed;
             @RequiresAction(action = Action.RESTART)
-            @ValidatedInt.Restrict(min = 1, max = 100000)
+            @ValidatedInt.Restrict(min = 1, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int durability;
             // live, no restart
-            @ValidatedInt.Restrict(min = 0, max = 100000)
+            @ValidatedInt.Restrict(min = 0, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int cooldownTicks;
-            @ValidatedInt.Restrict(min = 0, max = 100000)
+            @ValidatedInt.Restrict(min = 0, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int chargeTicks;
-            @ValidatedInt.Restrict(min = 0, max = 100000)
+            @ValidatedInt.Restrict(min = 0, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int channelTicks;
 
             Stats(float attackDamage, float atkspeed, int durability,
@@ -250,21 +251,21 @@ public final class ResonantWeaponryConfig {
                 super(5.0f, -1.0f, 3249, 600, 20, 100);
             }
 
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float armorPen = 0.40f;
-            @ValidatedInt.Restrict(min = 1, max = 100000)
+            @ValidatedInt.Restrict(min = 1, max = 100000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int firstHitWindow = 100;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float relentlessBelow = 0.40f;
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float explosionRadius = 25f;
             public float explosionDamage = 30f;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float explosionArmorPen = 0.5f;
             public int teleportDistance = 30;
             public int downReach = 20;
             public int upReach = 50;
-            @ValidatedInt.Restrict(min = 1, max = 10000)
+            @ValidatedInt.Restrict(min = 1, max = 10000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int riseDuration = 20;
             public int persistDuration = 100;
             public int columnheight = 100;
@@ -290,12 +291,12 @@ public final class ResonantWeaponryConfig {
                 super(9.0f, -2.6f, 3249, 400, 0, 0);
             }
 
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float cycloneRadius = 7.0f;
             public float cycloneDamage = 10.0f;
             public int tailwindSpeedDuration = 100;
             public int tailwindCooldown = 200;
-            @ValidatedInt.Restrict(min = 1, max = 1000)
+            @ValidatedInt.Restrict(min = 1, max = 1000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int aftercutMaxStacks = 3;
             public int aftercutDelay = 80;
             public float aftercutDamage = 6.0f;
@@ -307,16 +308,16 @@ public final class ResonantWeaponryConfig {
             }
 
             public float slashReach = 5.0f;
-            @ValidatedFloat.Restrict(min = 0f, max = 100f)
+            @ValidatedFloat.Restrict(min = 0f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float slashDamageMult = 1.5f;
             public int witherDuration = 60;
             public int blindnessDuration = 60;
             public int slowDuration = 100;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float sanguineHealPct = 0.5f;
             public int sanguineCooldown = 600;
             public float hemoAoEDamage = 12.0f;
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float hemoAoERadius = 5.0f;
             public int hemoCooldown = 400;
         }
@@ -328,13 +329,13 @@ public final class ResonantWeaponryConfig {
 
             public int teleportDistance = 5;
             public float trailDamage = 18.0f;
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float trailRadius = 4.0f;
             public int trailDelay = 10;
-            @ValidatedInt.Restrict(min = 1, max = 1000)
+            @ValidatedInt.Restrict(min = 1, max = 1000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int maxStacks = 4;
             public float trueDamage = 8.0f;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float nullifyChance = 0.20f;
         }
 
@@ -348,7 +349,7 @@ public final class ResonantWeaponryConfig {
             public float aftercutDamage = 8.0f;
             public int aftercutDelay = 20;
             public boolean aftercutRehit = true;
-            @ValidatedInt.Restrict(min = 1, max = 1000)
+            @ValidatedInt.Restrict(min = 1, max = 1000, type = ValidatedNumber.WidgetType.TEXTBOX)
             public int maxStacks = 8;
             public int decayAfter = 100;
             public int decayEvery = 20;
@@ -365,15 +366,15 @@ public final class ResonantWeaponryConfig {
 
             public float leapVelocityUp = 1.5f;
             public float leapVelocityForward = 1.2f;
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float impactRadius = 8.0f;
             public float impactDamage = 25.0f;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float armorPenetration = 0.30f;
-            @ValidatedFloat.Restrict(min = 0f, max = 1f)
+            @ValidatedFloat.Restrict(min = 0f, max = 1f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float ruinationHpThreshold = 0.15f;
             public float ruinationAoEDamage = 15.0f;
-            @ValidatedFloat.Restrict(min = 1f, max = 100f)
+            @ValidatedFloat.Restrict(min = 1f, max = 100f, type = ValidatedNumber.WidgetType.TEXTBOX)
             public float ruinationAoERadius = 6.0f;
             public int ruinationCooldown = 200;
         }
